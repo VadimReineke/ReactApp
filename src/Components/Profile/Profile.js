@@ -5,9 +5,9 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile= () => {
     return (
-        <main className={classes.main}>
-            <Hero />
-            <MyPosts />
+        <main className={classes.main}>           
+         <Hero />
+        <MyPosts />
         </main>
     )
 }
