@@ -10,12 +10,8 @@ const App = () => {
   return (
     <div className="app-wrapper container">
         <Header />
-
         <Nav />
         <Profile />
-
-
-
     </div>
   );
 }

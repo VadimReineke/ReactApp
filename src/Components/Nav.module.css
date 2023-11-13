@@ -1,0 +1,26 @@
+
+.nav {
+    grid-area: nav;
+    background-color: lightblue;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .list {
+    padding-top: 30px;
+  } 
+  
+  .item:not(:last-child) {
+  margin-bottom: 20px; 
+  }
+  
+  .link {
+    font-family: Muller;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 100%;
+  }
