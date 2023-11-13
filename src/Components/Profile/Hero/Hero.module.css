@@ -1,14 +1,8 @@
-
-.main {
-  grid-area: main;
-  background-color: lightslategray;
-}
-
 .container {
     display: flex;
     flex-direction: column;
     width: 100%;
-  }  
+}  
   
 .img {
   flex-shrink: 0;
