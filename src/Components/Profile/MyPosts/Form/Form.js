@@ -5,7 +5,7 @@ const Form = (props) => {
     return (
         <form className={classes.form}>
             <textarea className={classes.textarea}></textarea>
-            <button className={classes.addButton} type="button">{props.nameBtn}</button>
+            <button className={`${classes.addButton} ${classes.btnReset}`} type="button">{props.nameBtn}</button>
         </form>
     )
 }

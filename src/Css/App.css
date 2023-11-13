@@ -117,3 +117,13 @@ ol[class] {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.btn-reset {
+	outline: none;
+	border: none;
+}
+
+.main {
+	grid-area: main;
+	background-color: lightslategray;
+  }

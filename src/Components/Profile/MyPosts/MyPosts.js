@@ -11,7 +11,8 @@ const MyPosts = () => {
             <Form nameBtn = "Добавить"/>
 
             <ul className={classes.list}>
-            <Post />
+            <Post message="Это первый пост" likeCount='0'/>
+            <Post message="Это Второй пост"likeCount='7'/>
             </ul>
 
         </div>
