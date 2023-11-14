@@ -1,8 +1,17 @@
 
 .maintitle {
-    font-family: Muller;
+    padding-left: 30px;
+    font-family: Roboto;
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
+}
+
+.dialogsWrapper {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    padding: 30px;
+    /* display: flex;
+    justify-content: space-between; */
 }
