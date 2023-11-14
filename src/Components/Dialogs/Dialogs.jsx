@@ -2,23 +2,36 @@ import React from "react";
 import classes from './Dialogs.module.css';
 import { NavLink } from "react-router-dom";
 
+const DialogItem = (props) => {
+    return (
+        <li className={classes.dialogItem}><NavLink to={`/dialogs/${props.id}`}>{props.userName} </NavLink></li>
+    )
+}
+
+const DialogMessage = (props) => {
+    return (
+        <li className={classes.dialogMessage} >{props.message}</li>
+    )
+}
+
 const Dialogs = () => {
     return (
    <div className={classes.dialogs}>
     <h2 className={classes.maintitle}>Dialogs</h2>
        <div className={classes.dialogsWrapper}>
         <ul className={`${classes.column} ${classes.leftColumn} ${classes.dialogList}`}>
-            <li className={classes.dialogItem}><NavLink to="/dialogs/1">User1 </NavLink></li>
-            <li className={classes.dialogItem}><NavLink to="/dialogs/2">User2 </NavLink></li>
-            <li className={classes.dialogItem}><NavLink to="/dialogs/3">User3 </NavLink></li>
-            <li className={classes.dialogItem}><NavLink to="/dialogs/4">User4 </NavLink></li>
+             <DialogItem userName="User1" id='1' />
+             <DialogItem userName="User2" id='2' />
+             <DialogItem userName="User3" id='3' />
+             <DialogItem userName="User4" id='4'/>
+
         </ul>
 
         <ul className={`${classes.column} ${classes.rightColumn} ${classes.dialogsMessages}`}>
-            <li className={classes.dialogMessage} >Message11</li>
-            <li className={classes.dialogMessage} >Message21</li>
-            <li className={classes.dialogMessage} >Message31</li>
-            <li className={classes.dialogMessage} >Message41</li>
+            <DialogMessage message = 'Message 1' />
+            <DialogMessage message = 'Message 2' />
+            <DialogMessage message = 'Message 3' />
+            <DialogMessage message = 'Message 4' />
 
         </ul>
        </div>
