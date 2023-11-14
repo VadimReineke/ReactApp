@@ -3,7 +3,7 @@ import classes from './Dialogs.module.css';
 
 const Dialogs = () => {
     return (
-    <h2 className={classes.title}>Диалоги</h2>    
+    <h2 className={classes.maintitle}>Диалоги</h2>    
     )
 
 }
