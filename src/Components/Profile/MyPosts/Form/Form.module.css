@@ -1,0 +1,39 @@
+
+.form {
+    display: flex;
+    align-items: center ;
+    gap: 30px;
+}
+
+.textarea {
+    width: 350px;
+    height: 100px;
+}
+
+.addButton {
+    width: 10%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.btnReset {
+    outline: none;
+    border: none;
+}
+
+.addButton:hover {
+    background-color: gold;
+    transform: scale(1.1);
+}
+
+.addButton:active {
+    outline: 1px solid blue;
+}
+
+.addButton:focus {
+    outline: 2px solid blue;
+    transform: scale(1.1);
+
+}

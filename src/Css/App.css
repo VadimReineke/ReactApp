@@ -1,0 +1,129 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* *,
+*::before,
+*::after {
+	line-height: 0;
+	box-sizing: inherit;
+} */
+
+body {
+	min-width: 320px;
+	overflow-x: hidden;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+ul[class],
+ol[class] {
+	list-style: none;
+	padding-inline-start: 0;
+}
+
+
+/* @font-face {
+	font-family: 'Muller';
+	src: url('fonts/MullerRegular.eot');
+	src: local('Muller Regular'), local('MullerRegular'),
+		url('../fonts/MullerRegular.woff2') format('woff2'),
+		url('../fonts/MullerRegular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Muller';
+	src: url('fonts/MullerMedium.eot');
+	src: local('Muller Medium'), local('MullerMedium'),
+		url('../fonts/MullerMedium.woff2') format('woff2'),
+		url('../fonts/MullerMedium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: 'Muller';
+	src: url('fonts/MullerRegularItalic.eot');
+	src: local('Muller Regular Italic'), local('MullerRegularItalic'),
+		url('../fonts/MullerRegularItalic.woff2') format('woff2'),
+		url('../fonts/MullerRegularItalic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Muller';
+	src: url('fonts/MullerLightItalic.eot');
+	src: local('Muller Light Italic'), local('MullerLightItalic'),
+		url('../fonts/MullerLightItalic.woff2') format('woff2'),
+		url('../fonts/MullerLightItalic.woff') format('woff');
+	font-weight: 300;
+	font-style: italic;
+}
+
+
+@font-face {
+	font-family: 'Muller';
+	src: url('fonts/MullerBold.eot');
+	src: local('Muller Bold'), local('MullerBold'),
+		url('../fonts/MullerBold.woff2') format('woff2'),
+		url('../fonts/MullerBold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'OpenSans';
+	src: url('fonts/OpenSans-Regular.eot');
+	src: local('OpenSans Regular'), local('OpenSans-Regular'),
+		url('../fonts/OpenSans-Regular.woff2') format('woff2'),
+		url('../fonts/OpenSans-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+} */
+
+
+.app-wrapper {
+  display: grid;
+  grid-template-areas: 
+  "header header"
+  "nav main";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr ;
+  grid-gap: 10px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-reset {
+	outline: none;
+	border: none;
+}
+
+.main {
+	grid-area: main;
+	background-color: lightslategray;
+}
