@@ -15,10 +15,10 @@ const Dialogs = () => {
         </ul>
 
         <ul className={`${classes.column} ${classes.rightColumn} ${classes.dialogsMessages}`}>
-            <li className={classes.dialogMessage} >Message1</li>
-            <li className={classes.dialogMessage} >Message2</li>
-            <li className={classes.dialogMessage} >Message3</li>
-            <li className={classes.dialogMessage} >Message4</li>
+            <li className={classes.dialogMessage} >Message11</li>
+            <li className={classes.dialogMessage} >Message21</li>
+            <li className={classes.dialogMessage} >Message31</li>
+            <li className={classes.dialogMessage} >Message41</li>
 
         </ul>
        </div>
