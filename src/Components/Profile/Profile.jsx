@@ -7,7 +7,7 @@ const Profile= (props) => {
     return (
         <main className={classes.container}>           
          <Hero />
-         <MyPosts postData={props.postData}/>
+         <MyPosts state={props.state}/>
         </main>
     )
 }

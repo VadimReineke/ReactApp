@@ -11,8 +11,8 @@ import DialogMessage from "./Message/DialogMessage";
 const Dialogs = (props) => {
 
 
-    let dialogsArr = props.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} key={el.id} />)
-    let messagesArr = props.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
+    let dialogsArr = props.state.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} key={el.id} />)
+    let messagesArr = props.state.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
     return (
    <div className={classes.dialogs}>
