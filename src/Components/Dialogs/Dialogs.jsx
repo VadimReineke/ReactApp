@@ -9,24 +9,10 @@ import DialogMessage from "./Message/DialogMessage";
 // Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
 
 const Dialogs = (props) => {
-    let dialogsData = [
-        {id: 1, name: 'User1'},
-        {id: 2, name: 'User2'},
-        {id: 3, name: 'User3'},
-        {id: 4, name: 'User4'}
-    ]
 
-    let dialogsArr = dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} />)
 
-    let messagesData = [
-        {id: 1, message: 'Message 1'},
-        {id: 2, message: 'Message 2'},
-        {id: 3, message: 'Message 3'},
-        {id: 4, message: 'Message 4'},
-        {id: 5, message: 'Message 5'}
-    ]
-
-    let messagesArr = messagesData.map((el) => <DialogMessage message = {el.message} />)
+    let dialogsArr = props.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} key={el.id} />)
+    let messagesArr = props.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
     return (
    <div className={classes.dialogs}>
