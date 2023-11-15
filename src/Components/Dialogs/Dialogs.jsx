@@ -1,20 +1,9 @@
 import React from "react";
 import classes from './Dialogs.module.css';
-import { NavLink } from "react-router-dom";
+import DialogItem from "./DialogItem/DialogItem";
+import DialogMessage from "./Message/DialogMessage";
 
 
-// вынесли чать кода в компоненты для упрощения. Используем пропсы для передачи данных id и userName
-const DialogItem = (props) => {
-    return (
-        <li className={classes.dialogItem}><NavLink to={`/dialogs/${props.id}`}>{props.userName} </NavLink></li>
-    )
-}
-
-const DialogMessage = (props) => {
-    return (
-        <li className={classes.dialogMessage} >{props.message}</li>
-    )
-}
 
 //Создаем массив объектов пользователей и сообщений
 // Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
