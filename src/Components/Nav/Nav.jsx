@@ -1,6 +1,7 @@
 import React from "react";
 import classes from './Nav.module.css';
 import {NavLink } from "react-router-dom";
+import NavItemFriends from "./NavItemFriends/NavItemFriends";
 
 
 //  Создаем переменную в которую приходит значение есть ли класс active при активной ссылке
@@ -9,7 +10,10 @@ import {NavLink } from "react-router-dom";
 
 const linkClasses = ({isActive}) => (isActive ? `${classes.activeLink} ${classes.link}` : `${classes.link}`);
 
+
 const Nav = (props) => {
+
+ let friendsArr = props.state.map((el) => <NavItemFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
 
     return (
               <nav className={classes.nav}>
@@ -20,13 +24,11 @@ const Nav = (props) => {
                     <li className={classes.item}><NavLink to="/news" className = {linkClasses}>News</NavLink></li>
                     <li className={classes.item}><NavLink to="/music" className = {linkClasses}>Music</NavLink></li>
                     <li className={classes.item}><NavLink to="/settings" className = {linkClasses}>Settings</NavLink></li>
-                  </ul>
-                
-                  <div className={classes.friendsWrapper}><NavLink to="/friends" className = {linkClasses}>
-                      <p className={classes.itemDescr}>Friends</p>
-                      </NavLink>
-                  </div>
-
+                    <li className={classes.item}><NavLink to="/friends" className = {linkClasses}>Friends</NavLink></li>
+                    <li className={`${classes.item} ${classes.friendsList}` }>
+                           {friendsArr}
+                    </li>
+                  </ul>                
                 </div>
             </nav>
     )

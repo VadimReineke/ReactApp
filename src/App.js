@@ -12,29 +12,27 @@ import Friends from "./Components/Friends/Friends.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
-
-
 const App = (props) => {
+
   return (
-<BrowserRouter>
-<div className="app-wrapper container">
-                  <Header />
-                  <Nav />
-                  <main className='main'>
-                    <Routes>
-                      <Route path="/profile" element={<Profile state = {props.state.profilePage}/>}/>  
-                      <Route path="/dialogs/*" element={<Dialogs state = {props.state.dialogsPage} />}/> 
-                      <Route path="/news" element={<News />}/>
-                      <Route path="/music" element={<Music />}/>
-                      <Route path="/settings" element={<Settings />}/>
-                      <Route path="/friends/*" element={<Friends  state ={props.state.friendsPage}/>}/>
-                    </Routes>
-                  </main>
-              </div>
-</BrowserRouter>
+    <BrowserRouter>
+      <div className="app-wrapper container">
+        <Header />
+        <Nav  state = {props.state.sidebar.sidebarFriendsArr(props.state.friendsPage.friendsData)}/>
+        <main className='main'>
+          <Routes>
+            <Route path="/profile" element={<Profile state={props.state.profilePage} />} />
+            <Route path="/dialogs/*" element={<Dialogs state={props.state.dialogsPage} />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/friends/*" element={<Friends state={props.state.friendsPage} />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
 
 
-   
   );
 }
 

@@ -1,4 +1,36 @@
+ul[class],
+ol[class] {
+	list-style: none;
+	padding-inline-start: 0;
+}
 
-.item {
-    
+.container {
+    padding: 30px;
+}
+
+.mainTitle {
+    margin-bottom: 30px;
+}
+
+.friendsList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.friendItem {
+    max-height: 80px;
+    max-width: 65%;
+    background-color: white;
+}
+
+.friendsItemLink {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.avatarPic {
+    width: 70px;
+    height: 100%;
 }
