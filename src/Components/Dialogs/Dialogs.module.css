@@ -12,6 +12,11 @@
     display: grid;
     grid-template-columns: 6fr 6fr;
     padding: 30px;
+    gap: 10px;
+}
+
+.column {
+    background-color: azure;
 }
 
 .dialogList {
@@ -37,4 +42,46 @@
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
+}
+
+.dialogMessagesModule {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.textareaForm {
+    width: 100%;
+    height: 80px;
+    resize: none;
+    border-radius: 15px;
+}
+
+.addButton {
+    width: 50%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.btnReset {
+    outline: none;
+    border: none;
+}
+
+
+.addButton:hover {
+    background-color: gold;
+    transform: scale(1.05);
+}
+
+.addButton:active {
+    outline: 1px solid blue;
+}
+
+.addButton:focus {
+    outline: 2px solid blue;
+    transform: scale(1.1);
+
 }

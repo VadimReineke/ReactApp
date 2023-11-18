@@ -2,6 +2,7 @@ import React from "react";
 import classes from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import DialogMessage from "./Message/DialogMessage";
+import MessageForm from "./MessageForm/MessageForm";
 
 
 
@@ -22,9 +23,13 @@ const Dialogs = (props) => {
                {dialogsArr}
         </ul>
 
-        <ul className={`${classes.column} ${classes.rightColumn} ${classes.dialogsMessages}`}>
+        <div className={classes.dialogMessagesModule}>
+        <ul className={`${classes.column} ${classes.dialogsMessages}`}>
                 {messagesArr}
         </ul>
+            <MessageForm />
+        </div>
+
        </div>
 
    </div> 

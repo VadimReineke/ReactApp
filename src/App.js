@@ -9,13 +9,12 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import Friends from "./Components/Friends/Friends.jsx";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 
 const App = (props) => {
 
   return (
-    <BrowserRouter>
       <div className="app-wrapper container">
         <Header />
         <Nav  state = {props.state.sidebar.sidebarFriendsArr(props.state.friendsPage.friendsData)}/>
@@ -30,9 +29,6 @@ const App = (props) => {
           </Routes>
         </main>
       </div>
-    </BrowserRouter>
-
-
   );
 }
 
