@@ -13,7 +13,7 @@ const linkClasses = ({isActive}) => (isActive ? `${classes.activeLink} ${classes
 
 const Nav = (props) => {
 
- let friendsArr = props.state.map((el) => <NavItemFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
+ let friendsArr = props.sidebarFriends.map((el) => <NavItemFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
 
     return (
               <nav className={classes.nav}>

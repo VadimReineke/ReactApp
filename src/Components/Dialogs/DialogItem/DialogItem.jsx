@@ -4,9 +4,15 @@ import { NavLink } from "react-router-dom";
 
 // вынесли чаcть кода в компоненты для упрощения. Используем пропсы для передачи данных id и userName
 const DialogItem = (props) => {
+
+
+    let showDialog = () => {
+        let userId = props.id
+        console.log(props.userMessages(userId));
+    }
     return (
         <li className={classes.dialogItem}>
-        <NavLink to={`/dialogs/${props.id}`} className={classes.dialogLink}>
+        <NavLink to={`/dialogs/${props.id}`} className={classes.dialogLink} onClick={showDialog} >
             <img src={props.userAvatar} alt={`${props.userName} avatar`} className={classes.avatarPic}/>
             <p className={classes.userText}>{props.userName} </p> 
         </NavLink>

@@ -10,7 +10,7 @@ const MessageForm = (props) => {
 
     return (
         <form className={classes.messageForm}> 
-        <textarea placeholder="Напишите сообщение..." className={classes.textareaForm} ref={newMessage}></textarea>
+        <textarea placeholder="Напишите сообщение..." className={classes.textareaForm} ref={newMessage}/>
         <button className={`${classes.addButton} ${classes.btnReset}`} type="button"
          onClick={addMessage}>Добавить</button>
        </form>

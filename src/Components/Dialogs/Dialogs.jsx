@@ -11,10 +11,25 @@ import MessageForm from "./MessageForm/MessageForm";
 
 const Dialogs = (props) => {
 
-
-    let dialogsArr = props.state.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)
-    let messagesArr = props.state.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
-
+     //console.log(props.dialogRenderData)
+     console.log(props.dialogRenderData)
+ let messagesArr = props.dialogRenderData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
+// const test =(userId) => {
+//     return (
+//         props.dialogsPage.dialogsData.forEach(element => {
+//             if (element.id === userId) {
+//             let messagesArr = props.dialogsPage.dialogsData[userId].messagesUserData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
+//                 // console.log(props.dialogsPage.dialogsData[userId].messagesUserData)
+//             }  
+            
+//     })
+//     )
+// }
+    // let newUserMessageArr = props.dialogsPage.dialogsData.map((el) => el.messagesUserData);
+    let dialogsArr = props.dialogsPage.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} userMessages={props.userMessages}/>)
+   //let messagesArr = props.dialogsPage.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
+    
+     
     return (
    <div className={classes.dialogs}>
     <h2 className={classes.maintitle}>Dialogs</h2>
@@ -25,7 +40,7 @@ const Dialogs = (props) => {
 
         <div className={classes.dialogMessagesModule}>
         <ul className={`${classes.column} ${classes.dialogsMessages}`}>
-                {messagesArr}
+                {messagesArr}               
         </ul>
             <MessageForm />
         </div>

@@ -1,17 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
 import state from './redux/state';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { RenderEntireTree } from './render';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+RenderEntireTree(state)
 
-root.render(
-    <BrowserRouter>
-        <App state={state}/>
-    </BrowserRouter>
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-);
+// root.render(
+//     <BrowserRouter>
+//         <App state={state} sidebarFriends={sidebarFriends()} addPost={addPost}/>
+//     </BrowserRouter>
+// );
 

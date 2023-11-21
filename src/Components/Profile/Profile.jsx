@@ -4,10 +4,14 @@ import Hero from "./Hero/Hero"
 import MyPosts from "./MyPosts/MyPosts";
 
 const Profile= (props) => {
+    console.log(props)
     return (
         <main className={classes.container}>           
          <Hero />
-         <MyPosts state={props.state}/>
+         <MyPosts profilePage={props.profilePage} 
+                  addPost={props.addPost} 
+                  updatePostText = {props.updatePostText}
+        />
         </main>
     )
 }
