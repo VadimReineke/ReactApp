@@ -10,26 +10,10 @@ import MessageForm from "./MessageForm/MessageForm";
 // Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
 
 const Dialogs = (props) => {
+// console.log(props.dialogsPage.dialogNewText);
+    let dialogsArr = props.dialogsPage.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} userMessages={props.userMessages}/>)   
+    let messagesArr = props.dialogRenderData.messagesUserData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
-     //console.log(props.dialogRenderData)
-     console.log(props.dialogRenderData)
- let messagesArr = props.dialogRenderData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
-// const test =(userId) => {
-//     return (
-//         props.dialogsPage.dialogsData.forEach(element => {
-//             if (element.id === userId) {
-//             let messagesArr = props.dialogsPage.dialogsData[userId].messagesUserData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
-//                 // console.log(props.dialogsPage.dialogsData[userId].messagesUserData)
-//             }  
-            
-//     })
-//     )
-// }
-    // let newUserMessageArr = props.dialogsPage.dialogsData.map((el) => el.messagesUserData);
-    let dialogsArr = props.dialogsPage.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} userMessages={props.userMessages}/>)
-   //let messagesArr = props.dialogsPage.messagesData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
-    
-     
     return (
    <div className={classes.dialogs}>
     <h2 className={classes.maintitle}>Dialogs</h2>
@@ -42,7 +26,9 @@ const Dialogs = (props) => {
         <ul className={`${classes.column} ${classes.dialogsMessages}`}>
                 {messagesArr}               
         </ul>
-            <MessageForm />
+            <MessageForm updateDialogMessage={props.updateDialogMessage} 
+                         addDialogMessage={props.addDialogMessage}
+                         initialMessageText = {props.dialogsPage.dialogNewText}/>
         </div>
 
        </div>

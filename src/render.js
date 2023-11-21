@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { sidebarFriends, addPost, updatePostText, userMessages} from './redux/state';
+import { sidebarFriends, 
+        addPost, 
+        updatePostText, 
+        userMessages,
+        updateDialogMessage,
+        addDialogMessage } from './redux/state';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +21,8 @@ export const RenderEntireTree = (state) => {
                  addPost={addPost}
                  updatePostText = {updatePostText}
                  userMessages = {userMessages}
+                 updateDialogMessage = {updateDialogMessage}
+                 addDialogMessage ={addDialogMessage}
                  />
 
         </BrowserRouter>

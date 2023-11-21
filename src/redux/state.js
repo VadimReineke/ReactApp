@@ -4,6 +4,7 @@ import { RenderEntireTree } from "../render";
 
 let state = {
 
+
     // Создадим объекты в котором будут хранится данные для каждой страницы
     profilePage: {
         // Массив в котором хранятся данные для постов
@@ -55,7 +56,7 @@ let state = {
                         {id: 15, message: 'Message 15'}
                     ]
                 },
-                {id: 4, 
+                {id: 40, 
                     name: 'User4', 
                     avatar: 'data:image/png;base64,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',
                     messagesUserData: [
@@ -68,15 +69,16 @@ let state = {
                 }
             ],
               // Отрисовка сообщений для каждого пользователя и заголовок по умолчанию если диалогов нет
-            dialogRenderData: [{id: 0, message: 'Начните диалог'}],
-// Массив в котором хранятся данные сообщений для диалогов можно удалить, переделал на каждого пользователя
-        messagesData: [
-            {id: 1, message: 'Message 1'},
-            {id: 2, message: 'Message 2'},
-            {id: 3, message: 'Message 3'},
-            {id: 4, message: 'Message 4'},
-            {id: 5, message: 'Message 5'}
-        ]
+            dialogRenderData: {id: 1,
+                name: 'User1', 
+                avatar: '',
+                messagesUserData: [
+                   {id: 1, message: 'Выберете пользователя что бы начать переписку'},
+
+               ]
+               },
+
+            dialogNewText: ''
     },
 // Массив в котором хранятся данные для отображения страницы друзей
     friendsPage: {
@@ -94,6 +96,7 @@ let state = {
     
 }
 
+// создвние списка 3х рандомных друзей для отображения в sidebar
 export let sidebarFriends = () => {
     let workArr =  state.friendsPage.friendsData;
     let copyArr = workArr.map(el => el);
@@ -112,6 +115,7 @@ export let sidebarFriends = () => {
 
  } 
 
+ // функция нахождения и присвоения нового id 
 let newId = (arr) => {
 
     let workArr = arr;
@@ -125,7 +129,8 @@ let newId = (arr) => {
     }
  }
 
- export const addPost=() => {
+ // добавления постов
+ export const addPost = () => {
 
     let postObj = {
         id: newId(state.profilePage.postData),
@@ -138,22 +143,54 @@ let newId = (arr) => {
     RenderEntireTree(state);
 
  }
-
+// при начале ввода в textarea в создании постов принимает текст и обновляет содержимое textarea
  export const updatePostText = (postText) => {
     state.profilePage.postText = postText;
     RenderEntireTree(state);
  }
 
  
+ // при клике по пользователю определяет пользователя и подгружает переписку с ним
 export function userMessages(userId) {
 
     state.dialogsPage.dialogsData.forEach(element => {
         if (element.id === userId) {
-           state.dialogsPage.dialogRenderData = state.dialogsPage.dialogsData[userId-1].messagesUserData;
+            let indexEl = state.dialogsPage.dialogsData.indexOf(element);
+            state.dialogsPage.dialogRenderData = state.dialogsPage.dialogsData[indexEl];
  } 
 })
 
 RenderEntireTree(state);
+ }
+
+
+ export const updateDialogMessage = (messageText) => {
+
+    state.dialogsPage.dialogNewText = messageText;
+    RenderEntireTree(state);
+ }
+ // добавление сообщений в диалог
+
+ export const addDialogMessage = () => {
+
+    let userId = state.dialogsPage.dialogRenderData.id
+    
+    let messageObj = {
+        id: newId(state.dialogsPage.dialogRenderData.messagesUserData),
+        message: state.dialogsPage.dialogNewText,
+    }
+
+    state.dialogsPage.dialogsData.forEach(element => {
+        if (element.id === userId) {
+            // let indexEl = state.dialogsPage.dialogsData.indexOf(element);
+            element.messagesUserData.push(messageObj)
+        }
+      
+    })
+ 
+    state.dialogsPage.dialogNewText = '';
+    RenderEntireTree(state);
+
  }
 
 

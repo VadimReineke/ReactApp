@@ -7,8 +7,8 @@ const DialogItem = (props) => {
 
 
     let showDialog = () => {
-        let userId = props.id
-        console.log(props.userMessages(userId));
+        let userId = props.id;
+       props.userMessages(userId);
     }
     return (
         <li className={classes.dialogItem}>

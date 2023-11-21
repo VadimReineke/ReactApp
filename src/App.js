@@ -15,8 +15,6 @@ import { Route, Routes } from "react-router-dom";
 
 const App = (props) => {
 
- // console.log(props.state.dialogsPage.dialogRenderData)
-
   return (
       <div className="app-wrapper container">
         <Header />
@@ -30,7 +28,9 @@ const App = (props) => {
             <Route path="/dialogs/*" element={<Dialogs 
                           dialogsPage={props.state.dialogsPage} 
                           userMessages = {props.userMessages}
-                          dialogRenderData = {props.state.dialogsPage.dialogRenderData} />} />
+                          dialogRenderData = {props.state.dialogsPage.dialogRenderData}
+                          updateDialogMessage = {props.updateDialogMessage}
+                          addDialogMessage ={props.addDialogMessage} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
