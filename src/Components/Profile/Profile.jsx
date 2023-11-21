@@ -4,7 +4,7 @@ import Hero from "./Hero/Hero"
 import MyPosts from "./MyPosts/MyPosts";
 
 const Profile= (props) => {
-    console.log(props)
+
     return (
         <main className={classes.container}>           
          <Hero />

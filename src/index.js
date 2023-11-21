@@ -1,13 +1,36 @@
-import state from './redux/state';
-import { RenderEntireTree } from './render';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import state, { sidebarFriends, 
+        addPost, 
+        updatePostText, 
+        userMessages,
+        updateDialogMessage,
+        addDialogMessage,
+        subscride } from './redux/state';
 
-RenderEntireTree(state)
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// root.render(
-//     <BrowserRouter>
-//         <App state={state} sidebarFriends={sidebarFriends()} addPost={addPost}/>
-//     </BrowserRouter>
-// );
+let renderEntireTree = () => {
+    root.render(
+        <BrowserRouter>
+            <App state={state} 
+                 sidebarFriends={sidebarFriends()} 
+                 addPost={addPost}
+                 updatePostText = {updatePostText}
+                 userMessages = {userMessages}
+                 updateDialogMessage = {updateDialogMessage}
+                 addDialogMessage ={addDialogMessage}
+                 />
+
+        </BrowserRouter>
+    );
+}
+renderEntireTree(state);
+
+subscride(renderEntireTree);
+
 
