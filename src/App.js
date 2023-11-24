@@ -14,12 +14,13 @@ import { Route, Routes } from "react-router-dom";
 
 
 const App = (props) => {
-
+console.log(props.state.profilePage)
   return (
       <div className="app-wrapper container">
         <Header />
         <Nav  sidebarFriends = {props.sidebarFriends}/>
         <main className='main'>
+          
           <Routes>
             <Route path="/profile" element={<Profile 
                                             profilePage={props.state.profilePage}

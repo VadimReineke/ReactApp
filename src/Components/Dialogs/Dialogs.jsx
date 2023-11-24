@@ -10,7 +10,7 @@ import MessageForm from "./MessageForm/MessageForm";
 // Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
 
 const Dialogs = (props) => {
-// console.log(props.dialogsPage.dialogNewText);
+
     let dialogsArr = props.dialogsPage.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} userMessages={props.userMessages}/>)   
     let messagesArr = props.dialogRenderData.messagesUserData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
