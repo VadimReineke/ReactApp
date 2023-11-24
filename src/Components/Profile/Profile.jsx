@@ -3,11 +3,15 @@ import classes from './Profile.module.css';
 import Hero from "./Hero/Hero"
 import MyPosts from "./MyPosts/MyPosts";
 
-const Profile= () => {
+const Profile= (props) => {
+
     return (
         <main className={classes.container}>           
          <Hero />
-         <MyPosts />
+         <MyPosts profilePage={props.profilePage} 
+                  addPost={props.addPost} 
+                  updatePostText = {props.updatePostText}
+        />
         </main>
     )
 }

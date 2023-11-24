@@ -1,0 +1,13 @@
+.friendsItemLink {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.avatarPic {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+}
+

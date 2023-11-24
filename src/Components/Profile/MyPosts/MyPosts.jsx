@@ -3,16 +3,19 @@ import classes from './MyPosts.module.css';
 import Form from "./Form/Form";
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+    let postsArr = props.profilePage.postData.map(el => <Post message={el.message} likeCount={el.likesCount} key={el.id}/> ) //получаем массив постов из index.js через пропсы и отрисовываем
+
     return (
         <div className={classes.container}>
             <h2 className={classes.title}>My posts</h2>
 
-            <Form nameBtn = "Добавить"/>
+            <Form nameBtn = "Добавить" profilePage ={props.profilePage} addPost={props.addPost}
+                                      updatePostText= {props.updatePostText}/>
 
             <ul className={classes.list}>
-            <Post message="Это первый пост" likeCount='0'/>
-            <Post message="Это Второй пост"likeCount='7'/>
+                {postsArr}
             </ul>
 
         </div>

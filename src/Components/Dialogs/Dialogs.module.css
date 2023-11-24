@@ -12,6 +12,41 @@
     display: grid;
     grid-template-columns: 6fr 6fr;
     padding: 30px;
-    /* display: flex;
-    justify-content: space-between; */
+    gap: 10px;
 }
+
+.column {
+    background-color: azure;
+}
+
+.dialogList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.dialogLink {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.avatarPic {
+    width: 80px;
+    height: 80px;
+}
+
+.userText {
+    font-family: Roboto;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.dialogMessagesModule {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
