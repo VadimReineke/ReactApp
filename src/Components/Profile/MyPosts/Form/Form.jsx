@@ -1,17 +1,19 @@
 import React from "react";
-import classes from './Form.module.css'
+import classes from './Form.module.css';
+import { actionCreaterAddPost, actionCreaterOnPostUpdate } from "../../../../redux/state";
+
 
 const Form = (props) => {
 
    let newPost = React.createRef();
    
     let addPostFn = () => {
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(actionCreaterAddPost())
     }
 
     let onPostUpdate = () => {
         let newPostText = newPost.current.value;
-        props.dispatch({type: 'UPDATE-TEXT-POST', postText: newPostText} )
+        props.dispatch(actionCreaterOnPostUpdate(newPostText))
     }
 
     return (

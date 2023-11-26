@@ -1,3 +1,13 @@
+//Постоянные для работы с постами
+const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
+const ADD_POST = 'ADD-POST'
+//Постоянные для работы с диалогами
+const SELECT_DIALOG = 'SELECT-DIALOG';
+const UPDATE_DIALOG_MESSAGE = 'UPDATE-DIALOG-MESSAGE';
+const ADD_DIALOG_MESSAGE = 'ADD-DIALOG-MESSAGE';
+
+
+
 let store = {
     _state:  {
 
@@ -158,7 +168,7 @@ let store = {
             this._state.profilePage.postData.push(postObj);
             this._state.profilePage.postText = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'USER-MESSAGES-STORY') {
+        } else if (action.type === 'SELECT-DIALOG') {
 
             this._state.dialogsPage.dialogsData.forEach(element => {
                 if (element.id === action.userId) {
@@ -189,6 +199,15 @@ let store = {
     } 
 
 }
+
+// Добавление постов
+export const actionCreaterOnPostUpdate = (newPostText) => ({type: UPDATE_TEXT_POST, postText: newPostText});
+export const actionCreaterAddPost = () => ({type: ADD_POST});
+
+// Работа с диалогами - выбор диалога, обновление ввода сообщения, добавление сообщения
+export const actionCreaterSelectDialog = (userId) => ({type: SELECT_DIALOG , userId: userId})
+export const actionCreaterUpdateTextMessage = (newTextMessage) => ({type: UPDATE_DIALOG_MESSAGE, messageText: newTextMessage})
+export const actionCreaterAddMessage = () => ({type: ADD_DIALOG_MESSAGE})
 
 export default store;
 

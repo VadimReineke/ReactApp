@@ -1,13 +1,16 @@
 import React from "react";
 import classes from '../Dialogs.module.css';
 import { NavLink } from "react-router-dom";
+import { actionCreaterSelectDialog } from "../../../redux/state";
+
+
 
 // вынесли чаcть кода в компоненты для упрощения. Используем пропсы для передачи данных id и userName
 const DialogItem = (props) => {
 
     let showDialog = () => {
         let userId = props.id;
-        props.dispatch({type: 'USER-MESSAGES-STORY', userId: userId})
+        props.dispatch(actionCreaterSelectDialog(userId));
     }
     return (
         <li className={classes.dialogItem}>

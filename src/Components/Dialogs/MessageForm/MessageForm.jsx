@@ -1,19 +1,14 @@
 import React from "react";
-import classes from './MessageForm.module.css'
+import classes from './MessageForm.module.css';
+import { actionCreaterAddMessage, actionCreaterUpdateTextMessage } from "../../../redux/state";
+
 
 const MessageForm = (props) => {
-
-
     let newMessage = React.createRef();
-
-    let addMessage = () => {
-       
-       props.dispatch({type: 'ADD-DIALOG-MESSAGE'})
-    }
-
+    let addMessage = () => {props.dispatch(actionCreaterAddMessage())}
     let updateTextMessage = () => {
         let newTextMessage = newMessage.current.value;
-        props.dispatch({type: 'UPDATE-DIALOG-MESSAGE', messageText: newTextMessage})
+        props.dispatch(actionCreaterUpdateTextMessage(newTextMessage))
     }
 
     return (
