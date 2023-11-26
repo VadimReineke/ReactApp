@@ -14,24 +14,20 @@ import { Route, Routes } from "react-router-dom";
 
 
 const App = (props) => {
-console.log(props.state.profilePage)
+
   return (
       <div className="app-wrapper container">
         <Header />
-        <Nav  sidebarFriends = {props.sidebarFriends}/>
+        <Nav  dispatch = {props.dispatch}/>
         <main className='main'>
-          
           <Routes>
             <Route path="/profile" element={<Profile 
-                                            profilePage={props.state.profilePage}
-                                            addPost={props.addPost} 
-                                            updatePostText={props.updatePostText} />} />
+                          profilePage={props.state.profilePage} 
+                          dispatch = {props.dispatch}/>} />
             <Route path="/dialogs/*" element={<Dialogs 
-                          dialogsPage={props.state.dialogsPage} 
-                          userMessages = {props.userMessages}
+                          dialogsPage={props.state.dialogsPage}
                           dialogRenderData = {props.state.dialogsPage.dialogRenderData}
-                          updateDialogMessage = {props.updateDialogMessage}
-                          addDialogMessage ={props.addDialogMessage} />} />
+                          dispatch = {props.dispatch}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

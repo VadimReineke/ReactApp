@@ -7,12 +7,13 @@ const MessageForm = (props) => {
     let newMessage = React.createRef();
 
     let addMessage = () => {
-       props.addDialogMessage()
+       
+       props.dispatch({type: 'ADD-DIALOG-MESSAGE'})
     }
 
-    let updateText = () => {
-        let text = newMessage.current.value;
-        props.updateDialogMessage(text);
+    let updateTextMessage = () => {
+        let newTextMessage = newMessage.current.value;
+        props.dispatch({type: 'UPDATE-DIALOG-MESSAGE', messageText: newTextMessage})
     }
 
     return (
@@ -20,7 +21,7 @@ const MessageForm = (props) => {
         <textarea placeholder="Напишите сообщение..." 
                 className={classes.textareaForm} 
                 ref={newMessage} 
-                onChange={updateText}
+                onChange={updateTextMessage}
                 value={props.initialMessageText}
                 />
         <button className={`${classes.addButton} ${classes.btnReset}`} type="button"

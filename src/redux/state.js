@@ -96,36 +96,21 @@ let store = {
         },
     
     },
-
     // метод отрисовки при изменении состояния
     _callSubscriber() {
     },
+
     // Создаем метод, который возвращает нам state, так как он приватный и на прямую мы к нему обращаться не должны ( можем но не будем)
     getState() {
         return this._state
     },
-
-    // создание списка 3х рандомных друзей для отображения в sidebar
-    sidebarFriends() {
-    let workArr = this._state.friendsPage.friendsData;
-    let copyArr = workArr.map(el => el);
-    let newFriendArr = []
-
-    do {
-        let randomIndex = Math.floor(Math.random() * copyArr.length);
-        let randomElement = copyArr[randomIndex];
-        if (randomElement !== undefined) {
-            newFriendArr.push(randomElement);
-            delete copyArr[randomIndex];
-        }
-    } while (newFriendArr.length < 3)
-
-    return newFriendArr
-
+     // запуск ререндера при изменении this._state
+    subscride(observer) {
+        this._callSubscriber = observer;
     },
 
-    // функция нахождения и присвоения нового id 
-    newId(arr){
+    // функция нахождения и присвоения нового id  используется только внутри store
+    _newId(arr){
     let workArr = arr;
     if (workArr.length === 0) {
         let idMax = 1;
@@ -137,73 +122,73 @@ let store = {
     }
     },
 
-    // при начале ввода в textarea в создании постов принимает текст и обновляет содержимое textarea
-    updatePostText(postText) {
-    this._state.profilePage.postText = postText;
-    this._callSubscriber();
-    },
-    // добавления постов
-    addPost() {
-
-        let postObj = {
-            id: this.newId(this._state.profilePage.postData),
-            message: this._state.profilePage.postText,
-            likesCount: 0
-        }
-
-        this._state.profilePage.postData.push(postObj);
-        this._state.profilePage.postText = '';
-        this._callSubscriber();
-    },
-
-    // при клике по пользователю определяет пользователя и подгружает переписку с ним
-    userMessages(userId) {
-
-        this._state.dialogsPage.dialogsData.forEach(element => {
-            if (element.id === userId) {
-                let indexEl = this._state.dialogsPage.dialogsData.indexOf(element);
-                this._state.dialogsPage.dialogRenderData = this._state.dialogsPage.dialogsData[indexEl];
-            }
-        })
-
-        this._callSubscriber();
-    },
-
-// при вводе символов в textarea в диалогах отслеживаем это действие
-    updateDialogMessage(messageText) {
-    this._state.dialogsPage.dialogNewText = messageText;
-    this._callSubscriber();
-    },
-
-    // добавление сообщений в диалог
-    addDialogMessage() {
-
-    let userId = this._state.dialogsPage.dialogRenderData.id
-
-    let messageObj = {
-        id: this.newId(this._state.dialogsPage.dialogRenderData.messagesUserData),
-        message: this._state.dialogsPage.dialogNewText,
-    }
-
-    this._state.dialogsPage.dialogsData.forEach(element => {
-        if (element.id === userId) {
-            element.messagesUserData.push(messageObj)
-        }
-
-    })
-
-    this._state.dialogsPage.dialogNewText = '';
-    this._callSubscriber();
-
-    },
+    //  Можно сохранить функции и передавать в dispatch только имя.
+    // А можно целиком перенести логику в dispatch
+    // Сделал первую функцию с именем, а остальные перенес.
+    _sidebarFriends() {
+        let workArr = this._state.friendsPage.friendsData;
+        let copyArr = workArr.map(el => el);
+        let newFriendArr = []
     
-    // запуск ререндера при изменении this._state
-    subscride(observer) {
-    this._callSubscriber = observer;
-    }
+        do {
+            let randomIndex = Math.floor(Math.random() * copyArr.length);
+            let randomElement = copyArr[randomIndex];
+            if (randomElement !== undefined) {
+                newFriendArr.push(randomElement);
+                delete copyArr[randomIndex];
+            }
+        } while (newFriendArr.length < 3)
+    
+        return newFriendArr
+    },
+
+    dispatch(action) {
+        if (action.type === 'SIDEBAR-FRIENDS' ) {
+           return this._sidebarFriends();
+        } else if (action.type === 'UPDATE-TEXT-POST') {
+            this._state.profilePage.postText = action.postText;
+            this._callSubscriber();
+        } else if (action.type === 'ADD-POST') {
+            let postObj = {
+                id: this._newId(this._state.profilePage.postData),
+                message: this._state.profilePage.postText,
+                likesCount: 0
+            }
+    
+            this._state.profilePage.postData.push(postObj);
+            this._state.profilePage.postText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'USER-MESSAGES-STORY') {
+
+            this._state.dialogsPage.dialogsData.forEach(element => {
+                if (element.id === action.userId) {
+                    let indexEl = this._state.dialogsPage.dialogsData.indexOf(element);
+                    this._state.dialogsPage.dialogRenderData = this._state.dialogsPage.dialogsData[indexEl];
+                }
+                this._callSubscriber();
+            })
+        } else if (action.type === 'UPDATE-DIALOG-MESSAGE') {
+            this._state.dialogsPage.dialogNewText = action.messageText;
+            this._callSubscriber();
+        } else if ( action.type === 'ADD-DIALOG-MESSAGE') {
+            let userId = this._state.dialogsPage.dialogRenderData.id
+            let messageObj = {
+                id: this._newId(this._state.dialogsPage.dialogRenderData.messagesUserData),
+                message: this._state.dialogsPage.dialogNewText,
+            }
+        
+            this._state.dialogsPage.dialogsData.forEach(element => {
+                if (element.id === userId) {
+                    element.messagesUserData.push(messageObj)
+                }
+            })
+            this._state.dialogsPage.dialogNewText = '';
+            this._callSubscriber();
+        
+        }
+    } 
 
 }
 
 export default store;
 
-window.store = store;

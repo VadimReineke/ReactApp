@@ -5,10 +5,9 @@ import { NavLink } from "react-router-dom";
 // вынесли чаcть кода в компоненты для упрощения. Используем пропсы для передачи данных id и userName
 const DialogItem = (props) => {
 
-
     let showDialog = () => {
         let userId = props.id;
-       props.userMessages(userId);
+        props.dispatch({type: 'USER-MESSAGES-STORY', userId: userId})
     }
     return (
         <li className={classes.dialogItem}>

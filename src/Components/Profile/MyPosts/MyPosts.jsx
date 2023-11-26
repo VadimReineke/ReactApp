@@ -11,8 +11,7 @@ const MyPosts = (props) => {
         <div className={classes.container}>
             <h2 className={classes.title}>My posts</h2>
 
-            <Form nameBtn = "Добавить" profilePage ={props.profilePage} addPost={props.addPost}
-                                      updatePostText= {props.updatePostText}/>
+            <Form nameBtn = "Добавить" profilePage ={props.profilePage}  dispatch = {props.dispatch}/>
 
             <ul className={classes.list}>
                 {postsArr}

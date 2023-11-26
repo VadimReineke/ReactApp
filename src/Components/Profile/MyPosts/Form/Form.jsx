@@ -6,12 +6,12 @@ const Form = (props) => {
    let newPost = React.createRef();
    
     let addPostFn = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'})
     }
 
     let onPostUpdate = () => {
         let newPostText = newPost.current.value;
-        props.updatePostText(newPostText);
+        props.dispatch({type: 'UPDATE-TEXT-POST', postText: newPostText} )
     }
 
     return (

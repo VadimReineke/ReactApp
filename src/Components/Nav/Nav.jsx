@@ -12,9 +12,7 @@ const linkClasses = ({isActive}) => (isActive ? `${classes.activeLink} ${classes
 
 
 const Nav = (props) => {
-
- let friendsArr = props.sidebarFriends().map((el) => <NavItemFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
-
+let friendsArr = props.dispatch({type: 'SIDEBAR-FRIENDS'}).map((el) => <NavItemFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
     return (
               <nav className={classes.nav}>
                 <div className={classes.container}>
@@ -25,9 +23,7 @@ const Nav = (props) => {
                     <li className={classes.item}><NavLink to="/music" className = {linkClasses}>Music</NavLink></li>
                     <li className={classes.item}><NavLink to="/settings" className = {linkClasses}>Settings</NavLink></li>
                     <li className={classes.item}><NavLink to="/friends" className = {linkClasses}>Friends</NavLink></li>
-                    <li className={`${classes.item} ${classes.friendsList}` }>
-                           {friendsArr}
-                    </li>
+                    <li className={`${classes.item} ${classes.friendsList}` }>{friendsArr}</li>
                   </ul>                
                 </div>
             </nav>

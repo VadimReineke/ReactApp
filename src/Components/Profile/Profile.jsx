@@ -9,9 +9,7 @@ const Profile= (props) => {
         <main className={classes.container}>           
          <Hero />
          <MyPosts profilePage={props.profilePage} 
-                  addPost={props.addPost} 
-                  updatePostText = {props.updatePostText}
-        />
+                   dispatch = {props.dispatch}/>
         </main>
     )
 }
