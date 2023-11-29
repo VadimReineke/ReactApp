@@ -14,18 +14,17 @@ import { Route, Routes } from "react-router-dom";
 
 
 const App = (props) => {
-
   return (
       <div className="app-wrapper container">
         <Header />
-        <Nav  dispatch = {props.dispatch}/>
+        <Nav  sidebarFriendsData = {props.state.sidebarFriends.sidebarFriendsData}/>
         <main className='main'>
           <Routes>
             <Route path="/profile" element={<Profile 
                           profilePage={props.state.profilePage} 
                           dispatch = {props.dispatch}/>} />
             <Route path="/dialogs/*" element={<Dialogs 
-                          dialogsPage={props.state.dialogsPage}
+                          dialogsPage = {props.state.dialogsPage}
                           dialogRenderData = {props.state.dialogsPage.dialogRenderData}
                           dispatch = {props.dispatch}/>} />
             <Route path="/news" element={<News />} />

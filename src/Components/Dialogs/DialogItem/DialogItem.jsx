@@ -1,7 +1,7 @@
 import React from "react";
 import classes from '../Dialogs.module.css';
 import { NavLink } from "react-router-dom";
-import { actionCreaterSelectDialog } from "../../../redux/state";
+import { selectDialogCreator } from "../../../redux/store";
 
 
 
@@ -10,7 +10,7 @@ const DialogItem = (props) => {
 
     let showDialog = () => {
         let userId = props.id;
-        props.dispatch(actionCreaterSelectDialog(userId));
+        props.dispatch(selectDialogCreator(userId));
     }
     return (
         <li className={classes.dialogItem}>

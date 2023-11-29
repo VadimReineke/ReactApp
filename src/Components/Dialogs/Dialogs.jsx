@@ -14,6 +14,14 @@ const Dialogs = (props) => {
     let dialogsArr = props.dialogsPage.dialogsData.map((el) =>  <DialogItem userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} dispatch = {props.dispatch} />)   
     let messagesArr = props.dialogRenderData.messagesUserData.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
+    let renderForm = () => {
+                   if ( props.dialogsPage.dialogFormActive === true) {
+                return <MessageForm  dispatch = {props.dispatch}
+                                     initialMessageText = {props.dialogsPage.dialogNewText}
+                                     />
+           }
+       }
+
     return (
    <div className={classes.dialogs}>
     <h2 className={classes.maintitle}>Dialogs</h2>
@@ -26,9 +34,7 @@ const Dialogs = (props) => {
         <ul className={`${classes.column} ${classes.dialogsMessages}`}>
                 {messagesArr}               
         </ul>
-            <MessageForm  
-                          dispatch = {props.dispatch}
-                          initialMessageText = {props.dialogsPage.dialogNewText}/>
+                {renderForm()}
         </div>
 
        </div>

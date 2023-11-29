@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Form.module.css';
-import { actionCreaterAddPost, actionCreaterOnPostUpdate } from "../../../../redux/state";
+import { addPostCreator, onPostUpdateCreator } from "../../../../redux/store";
 
 
 const Form = (props) => {
@@ -8,12 +8,12 @@ const Form = (props) => {
    let newPost = React.createRef();
    
     let addPostFn = () => {
-        props.dispatch(actionCreaterAddPost())
+        props.dispatch(addPostCreator())
     }
 
     let onPostUpdate = () => {
         let newPostText = newPost.current.value;
-        props.dispatch(actionCreaterOnPostUpdate(newPostText))
+        props.dispatch(onPostUpdateCreator(newPostText))
     }
 
     return (
