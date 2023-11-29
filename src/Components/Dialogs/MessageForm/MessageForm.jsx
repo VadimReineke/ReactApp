@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './MessageForm.module.css';
-import { addMessageCreator, updateTextMessageCreator } from "../../../redux/store";
+import { addMessageCreator, updateTextMessageCreator } from "../../../redux/dialogs-reducer";
 
 
 const MessageForm = (props) => {

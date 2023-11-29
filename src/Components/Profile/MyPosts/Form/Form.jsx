@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Form.module.css';
-import { addPostCreator, onPostUpdateCreator } from "../../../../redux/store";
+import { addPostCreator, onPostUpdateCreator } from "../../../../redux/profile-reducer";
 
 
 const Form = (props) => {
