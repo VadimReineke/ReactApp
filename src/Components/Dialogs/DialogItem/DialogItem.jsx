@@ -1,7 +1,7 @@
 import React from "react";
 import classes from '../Dialogs.module.css';
 import { NavLink } from "react-router-dom";
-import { selectDialogCreator } from "../../../redux/store";
+import { selectDialogCreator } from "../../../redux/dialogs-reducer";
 
 
 
