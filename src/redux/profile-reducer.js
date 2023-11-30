@@ -3,6 +3,19 @@
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const ADD_POST = 'ADD-POST';
 
+let initialState = {
+
+        // Массив в котором хранятся данные для постов
+        postData: [
+            { id: 1, message: 'Это первый пост', likesCount: '0' },
+            { id: 2, message: 'Это второй пост', likesCount: '7' },
+            { id: 5, message: 'Это третий пост', likesCount: '7' },
+            { id: 12, message: 'Это четвертый пост', likesCount: '7' },
+            { id: 10, message: 'Это пятый пост', likesCount: '7' },
+        ],
+
+        postText: ''
+}
 
 // функция нахождения и присвоения нового id 
 const newId = (arr) => {
@@ -17,7 +30,7 @@ const newId = (arr) => {
     }
 }
 
-const profileReducer = (state, action) => {
+const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case UPDATE_TEXT_POST:
