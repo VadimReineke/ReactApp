@@ -1,26 +1,21 @@
 import React from "react";
-import classes from './MessageForm.module.css'
+import classes from './MessageForm.module.css';
+import { addMessageCreator, updateTextMessageCreator } from "../../../redux/dialogs-reducer";
+
 
 const MessageForm = (props) => {
 
-
-    let newMessage = React.createRef();
-
-    let addMessage = () => {
-       props.addDialogMessage()
-    }
-
-    let updateText = () => {
-        let text = newMessage.current.value;
-        props.updateDialogMessage(text);
+    let addMessage = () => {props.dispatch(addMessageCreator())}
+    let updateTextMessage = (e) => {
+        let newTextMessage = e.target.value;
+        props.dispatch(updateTextMessageCreator(newTextMessage))
     }
 
     return (
         <form className={classes.messageForm}> 
         <textarea placeholder="Напишите сообщение..." 
                 className={classes.textareaForm} 
-                ref={newMessage} 
-                onChange={updateText}
+                onChange={updateTextMessage}
                 value={props.initialMessageText}
                 />
         <button className={`${classes.addButton} ${classes.btnReset}`} type="button"

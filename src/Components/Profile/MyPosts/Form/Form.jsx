@@ -1,17 +1,19 @@
 import React from "react";
-import classes from './Form.module.css'
+import classes from './Form.module.css';
+import { addPostCreator, onPostUpdateCreator } from "../../../../redux/profile-reducer";
+
 
 const Form = (props) => {
 
    let newPost = React.createRef();
    
     let addPostFn = () => {
-        props.addPost();
+        props.dispatch(addPostCreator())
     }
 
     let onPostUpdate = () => {
         let newPostText = newPost.current.value;
-        props.updatePostText(newPostText);
+        props.dispatch(onPostUpdateCreator(newPostText))
     }
 
     return (

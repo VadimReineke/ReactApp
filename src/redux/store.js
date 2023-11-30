@@ -1,3 +1,7 @@
+import dialogsReducer from "./dialogs-reducer";
+import friendsReducer from "./friends-reducer";
+import profileReducer from "./profile-reducer";
+
 let store = {
     _state:  {
 
@@ -75,11 +79,11 @@ let store = {
                 avatar: '',
                 messagesUserData: [
                     { id: 1, message: 'Выберете пользователя что бы начать переписку' },
-    
                 ]
             },
     
-            dialogNewText: ''
+            dialogNewText: '',
+            dialogFormActive: false
         },
         // Массив в котором хранятся данные для отображения страницы друзей
         friendsPage: {
@@ -94,116 +98,59 @@ let store = {
                 { id: 8, name: 'User8', avatar: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAAB6CAMAAAC2jOxbAAABQVBMVEX/zgD////BJy3/z8CbXg3qeJj/zAAEDFT8sZ2bHif/z8P/0AD/1AD/z5z8rpr+xraUVACYWg3xxLL/08W7JSwAAE//z8e7hw2RUQ6ZWwD/z8wAAFL//vT/2ADpcpb/+uT/zk28AC/0yAOvdwz/1B3/zmcAAEr/9Mf/43z/3GL/2Un/6Jn/+tz/6qX/9c//323/8rn/3FXktwbVpQqmbwzFkgqiZwzMm37/z47/z6r/zj//z7j/2sfxy70AAEL/5Yf/z3xHJl30vI/ekBvHTCXBJxn0uRDUbCW+ZV3ahSHEOCzopBb00J+8ABjci5TJOz/12da7AADNXl3vs6+xe0ufZCXYq5K3g1+kazaLeIRIP2J5a367np4lJVikjpTdu7JdUm+VTnjPao2sWoBgM2UvG1nUlaDtiZ/ZgnioPDyzUk6wfEw7AAAIrklEQVRogbXaCVfaShQA4IFACiSyRRAQqgKCsimg4lptbavdN0Rabe32Xvv6/3/Am0z2ZDJ3IvW+c94pEfJx7yyZkEGhgLHU7LbX1lt1CeH/6q31tXa3uRT0JCjAe8vNdksW1UBWkJdyq90s34Xa6bbqDs4ZolhvdTt/V13qtiR/0ZSlVpev2DxqbwPBpA6jjd5fUTf7jMLSSt3fnFndbAUhdbgFuWy1dwtTc9l1Zqnl9duZxF1njSSG2uXotgxW6t5CLfdnMYnb903XT23OlKiRbjOY2p6Z1KIdQC1vzJ6oFuIGtco0tcwxXiQtYLZFYynqUh1AJUmuoOpgMKiiigzJYp0yNXvVJSjLSnW4kClokVkYVitQxl7WowKoVBnUCplMxIhMplAbQK6HdatL7BPIgy0bacBbA5n9Vd2sSy3XmZ+Wtj2m5m6zm7deZqns3itXazSTuLUqK113T3aqzHEqVXf8UMzuVFnZihv+atuDqmNSlsnwkKoRfxSzETbb9lOblEy3IrWF7eFAqlRkJqqyzC4lNukqrSdJO7irkMG5tcVG1batsFh7j7KptGs4Vo1zQmgkUhgye9Q6Td2k9SQJzNCRLbtpN71qmfoBqRYAjWS2mU0rlT3qGnXQyAtBco0A/XjNrXboI1UaFoKg7JZFYsel9n2KUg2kZmrsabzvVGlDlcRfLbE5aHW15fc+aRCsxAN2si276psqQhXfGZ9eYuZVwEhWU9f93xe0ZSNDmZXuuqV2WF9PDtaNoXQ7pkofqya7HZDNDP1Ppo1ZVV1iLiCCs5ECoyeTJSPym4Ed7DDQ8GHOFWQ2VlX4PqqCR23Rdt5iOuN4Zf9bpjBkXfHEvqZCBUbaXDEupItFfHr8v/TF6ChtMulR9sJyCzvAglEtMeIoMFHTWWUyGk8vLqaXo6yiTEw1PVYEZTJNp1U5UxtCi2O1xIinwJoqKEYIgnJZtKH4tZKdjEbFzAJ4I0BKjIAlsF21x7SoN+mIfAsNTmcW2NUlgZcyKNSE3+dVs2ob4140xnWfTrKKfpBLRU2sdjnuVS1VEbJZ/K/seDqdjtUGFoTJeDrOBlDFLlZ9rqx0NXuJ+9NIUZtYsJV2YqoczYWvsigEf7v93b1xUVdxNQ8VwR1GhYuXyt4qnEMIlcE3zZUSuMtmFNv56UHURP4AbLIy6kHv2Utga5wxOpNRV3umik1VhIQAnFHsIWiOOMkLQiqZMs6sjC5GbnQ00eswTY9jMUFI7ALqJvLeUTkDny2WTKYMYZJWh6gDxdPSpd6wY6yqLKC20TFb3S/hTGOWiuekom7ox7L4MmgOK+29pWW2eow22N9rNS+kYjFnrlpBY8mYdqxQLF4YiWM1lhLyQD/eQL6rQ6qK2UsNNSugTC4usoqlJmG1hYBh7aqw1Yeto4qtW6tHBaFUZZ+0DqnoQFBsvckK53exjuKDiT3gnPAEtloSlFSMW1UPlfbBs4KxW/Kc21/FkSjBcyJHnAj5BK+ayOf3ljnOCf/sifZP5g741MTeKk91JY6WVWPOky1dneM6Wx0ar3eithDjxurO1HXE92O7VxVow4lPFTfAa46vSrvAc6ptxLNYo6uU4FS74FX9LtRNxLxjpqi0xVpAFZshjmnCUpWPn66uj468a6cgqoRXplzThKEefV7MNRqfrr7cHFGWbZxqHavsnwdc6s2DezgWFxuNe18/3uBqK8FVcQ2rXN1JV5UvuXt65EjSH6+P7DKfuolVru6kq4dXpkoCyw/uXV3fGF2Mr8Id9f6Vp2F9VJJ0LtfIff3Cr9bJXTOwNiWx61Rzelj05yOiAutvNcRjovY4vp96B0DatUGMh9++4/jxs7FolPoTKXH+hONcPaLy3KyvassY5Qari//8iOrx/aeebu7qUP07z+JFfeqAwJ/WSOznjfGay/2M2uKbxjautVzhlQT5cU1VOUos6ksY5Sr3MBr1sItaswrwTSS+oTN+R+RYT+ya00TUFWqRG18OeTtTy/z1kuNqt6+vT5V/77vU7w2cqjZcORbCYtdUefrTnjH/u3ONPlxs3BAVXPMj4wmW9qs0x5BdNhfjbvXHg2s91WU41WPbb+HAE2ZHskLil6PI93/oKE+q+lNn/WkDR7LVvJGs8m/Ucu//yuuzfx64k7NSNVT68zJnrFps6jXmcESjvz4YVxzoppWkWnY+ReJZKp6YLL5nzX/AkbIWijyTofno13xOx7OQ2bVYd+Q5hipeurhVrov7iR/LNe1bj0Kt569c+5mWD2hu/mCZB+2HvCrP6MEf3U24l8aJxC7Xmtq2V8P2hJurxpJcf5SwL4kPE4/qzKdV5ve1bdyz7yGAb7QkuXr6+Mmb90kTTf1+8+TxaRV2HTsm7GoZuPZI8tOz8EoYRzwZ0yIZO8cvV8JnTyHXsTvEsUujw/ykXD0jZDg8/1/MjPN5cmjljP0wUnLsfHXuSGE0rVR5ppsuNa4fXHnGeL4hOndjuvb8+E5RcvW5idLV8Mpz33RF16459/4mn8tA5YVlYtVs11jsz7x1fOUF/VmZMen7qvSObKsuifhvU43b1PDKKY11bfihqTTWjeISG8n+iTv+gBuXA6Xt0fOwHhQnq7HJc0eqVNbam8FUQ8fOj8mnHhSz8T/nv8/jblQtsqtLudvUTw117Z+SnlJQtUfFKabKPnUMIOrOWvo+06btgxXaqZlhS9Znf6vP7lZr/2XlLCgaPjOalrrvkqGaA9envswwauwZprAaapJ0K48Do+Hw4wpJ1H9vOGOHdnkNifKL4Kmqc5QsojXGxnDmHvheX7pNqjhZqc/cBA/s93/56lbqq5fs0wLqa1CdN8Ouvp5JfQOmFTfDfvTNLOrbd7dU372dQYUL7KMCJWar70HURw2/n0GFm9VPZTcsU30Lo5bqukgwG5atwp1Ju+J5VXZ3YqolDtVgXam+K91a/cA3M81TLu/vPty1SotXTPV/Y7gYd+wVSXAAAAAASUVORK5CYII=' }
             ]
         },
+        sidebarFriends: {
+            sidebarFriendsData: [],
+        }
     
     },
-
     // метод отрисовки при изменении состояния
     _callSubscriber() {
     },
+    // создание рандомного массива из 3х друзей для отрисовки в sidebar
+    randomSidebarFriendsArr() {
+        let workArr = store._state.friendsPage.friendsData;
+        if (workArr.length > 3) {
+            let copyArr = workArr.map(el => el);
+            let newFriendArr = []
+        
+            do {
+                let randomIndex = Math.floor(Math.random() * copyArr.length);
+                let randomElement = copyArr[randomIndex];
+                if (randomElement !== undefined) {
+                    newFriendArr.push(randomElement);
+                    delete copyArr[randomIndex];
+                }
+            } while (newFriendArr.length < 3)
+    
+           store._state.sidebarFriends.sidebarFriendsData = newFriendArr
+        } else {
+            store._state.sidebarFriends.sidebarFriendsData = store._state.friendsPage.friendsData;
+        }
+    },
+
+
     // Создаем метод, который возвращает нам state, так как он приватный и на прямую мы к нему обращаться не должны ( можем но не будем)
     getState() {
-        return this._state
+        this.randomSidebarFriendsArr()
+        return this._state 
     },
-
-    // создание списка 3х рандомных друзей для отображения в sidebar
-    sidebarFriends() {
-    let workArr = this._state.friendsPage.friendsData;
-    let copyArr = workArr.map(el => el);
-    let newFriendArr = []
-
-    do {
-        let randomIndex = Math.floor(Math.random() * copyArr.length);
-        let randomElement = copyArr[randomIndex];
-        if (randomElement !== undefined) {
-            newFriendArr.push(randomElement);
-            delete copyArr[randomIndex];
-        }
-    } while (newFriendArr.length < 3)
-
-    return newFriendArr
-
-    },
-
-    // функция нахождения и присвоения нового id 
-    newId(arr){
-    let workArr = arr;
-    if (workArr.length === 0) {
-        let idMax = 1;
-        return idMax
-    } else {
-        let idMax = Math.max(...workArr.map(i => i.id));
-        idMax = idMax + 1;
-        return idMax
-    }
-    },
-
-    // при начале ввода в textarea в создании постов принимает текст и обновляет содержимое textarea
-    updatePostText(postText) {
-    this._state.profilePage.postText = postText;
-    this._callSubscriber();
-    },
-    // добавления постов
-    addPost() {
-
-        let postObj = {
-            id: this.newId(this._state.profilePage.postData),
-            message: this._state.profilePage.postText,
-            likesCount: 0
-        }
-
-        this._state.profilePage.postData.push(postObj);
-        this._state.profilePage.postText = '';
-        this._callSubscriber();
-    },
-
-    // при клике по пользователю определяет пользователя и подгружает переписку с ним
-    userMessages(userId) {
-
-        this._state.dialogsPage.dialogsData.forEach(element => {
-            if (element.id === userId) {
-                let indexEl = this._state.dialogsPage.dialogsData.indexOf(element);
-                this._state.dialogsPage.dialogRenderData = this._state.dialogsPage.dialogsData[indexEl];
-            }
-        })
-
-        this._callSubscriber();
-    },
-
-// при вводе символов в textarea в диалогах отслеживаем это действие
-    updateDialogMessage(messageText) {
-    this._state.dialogsPage.dialogNewText = messageText;
-    this._callSubscriber();
-    },
-
-    // добавление сообщений в диалог
-    addDialogMessage() {
-
-    let userId = this._state.dialogsPage.dialogRenderData.id
-
-    let messageObj = {
-        id: this.newId(this._state.dialogsPage.dialogRenderData.messagesUserData),
-        message: this._state.dialogsPage.dialogNewText,
-    }
-
-    this._state.dialogsPage.dialogsData.forEach(element => {
-        if (element.id === userId) {
-            element.messagesUserData.push(messageObj)
-        }
-
-    })
-
-    this._state.dialogsPage.dialogNewText = '';
-    this._callSubscriber();
-
-    },
-    
-    // запуск ререндера при изменении this._state
+     // запуск ререндера при изменении this._state
     subscride(observer) {
-    this._callSubscriber = observer;
-    }
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+
+       this._state.profilePage = profileReducer(this._state.profilePage, action);
+       this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+       this._state.friendsPage = friendsReducer(this._state.friendsPage, action);
+
+       this._callSubscriber(this._state);
+        
+    } 
 
 }
 
+
 export default store;
 
-window.store = store;

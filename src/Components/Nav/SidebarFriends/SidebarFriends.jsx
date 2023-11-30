@@ -1,8 +1,8 @@
 import React from "react";
-import classes from './NavItemFriends.module.css'
+import classes from './SidebarFriends.module.css'
 import { NavLink } from "react-router-dom";
 
-const NavItemFriends = (props) => {
+const SidebarFriends = (props) => {
     return (
         <div className={classes.friendItem}>
         <NavLink to={`/friends/${props.id}`} className={classes.friendsItemLink}>
@@ -13,4 +13,4 @@ const NavItemFriends = (props) => {
     )
 }
 
-export default NavItemFriends;
+export default SidebarFriends;
