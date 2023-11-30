@@ -109,7 +109,6 @@ let store = {
     // создание рандомного массива из 3х друзей для отрисовки в sidebar
     randomSidebarFriendsArr() {
         let workArr = store._state.friendsPage.friendsData;
-        console.log(workArr.length)
         if (workArr.length > 3) {
             let copyArr = workArr.map(el => el);
             let newFriendArr = []
@@ -132,7 +131,8 @@ let store = {
 
     // Создаем метод, который возвращает нам state, так как он приватный и на прямую мы к нему обращаться не должны ( можем но не будем)
     getState() {
-        return this._state
+        this.randomSidebarFriendsArr()
+        return this._state 
     },
      // запуск ререндера при изменении this._state
     subscride(observer) {

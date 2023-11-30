@@ -11,7 +11,6 @@ let renderEntireTree = (state) => {
     root.render(
         <BrowserRouter>
             <App state={store.getState()}
-                 randomSidebarFriendsArr = {store.randomSidebarFriendsArr()} 
                  dispatch = {store.dispatch.bind(store)} />
         </BrowserRouter>
     );
