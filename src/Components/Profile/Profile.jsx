@@ -1,15 +1,14 @@
 import React from "react";
 import classes from './Profile.module.css';
 import Hero from "./Hero/Hero"
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile= (props) => {
 
     return (
         <main className={classes.container}>           
          <Hero />
-         <MyPosts profilePage={props.profilePage} 
-                   dispatch = {props.dispatch}/>
+         <MyPostsContainer store = {props.store}/>
         </main>
     )
 }

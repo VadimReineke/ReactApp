@@ -4,7 +4,7 @@ import './Css/normalize.css';
 import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
 import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
@@ -20,13 +20,8 @@ const App = (props) => {
         <Nav  sidebarFriendsData = {props.state.sidebarFriends.sidebarFriendsData}/>
         <main className='main'>
           <Routes>
-            <Route path="/profile" element={<Profile 
-                          profilePage={props.state.profilePage} 
-                          dispatch = {props.dispatch}/>} />
-            <Route path="/dialogs/*" element={<Dialogs 
-                          dialogsPage = {props.state.dialogsPage}
-                          dialogRenderData = {props.state.dialogsPage.dialogRenderData}
-                          dispatch = {props.dispatch}/>} />
+            <Route path="/profile" element={<Profile store={props.store}/>} />
+            <Route path="/dialogs/*" element={<DialogsContainer store = {props.store}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

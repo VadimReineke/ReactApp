@@ -1,14 +1,12 @@
 import React from "react";
 import classes from './MessageForm.module.css';
-import { addMessageCreator, updateTextMessageCreator } from "../../../redux/dialogs-reducer";
-
 
 const MessageForm = (props) => {
 
-    let addMessage = () => {props.dispatch(addMessageCreator())}
+    let addMessage = () => {props.addMessage()}
     let updateTextMessage = (e) => {
         let newTextMessage = e.target.value;
-        props.dispatch(updateTextMessageCreator(newTextMessage))
+        props.updateNewMessageText(newTextMessage)
     }
 
     return (
