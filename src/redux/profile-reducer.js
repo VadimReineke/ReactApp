@@ -14,7 +14,7 @@ let initialState = {
             { id: 10, message: 'Это пятый пост', likesCount: '7' },
         ],
 
-        postText: ''
+        newPostText: ''
 }
 
 // функция нахождения и присвоения нового id 
@@ -24,6 +24,7 @@ const newId = (arr) => {
         let idMax = 1;
         return idMax
     } else {
+        // console.log(workArr.map(i => ))
         let idMax = Math.max(...workArr.map(i => i.id));
         idMax = idMax + 1;
         return idMax
@@ -33,26 +34,32 @@ const newId = (arr) => {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_TEXT_POST:
-            state.postText = action.postText;
-            return state;
-        case ADD_POST:
-            let postObj = {
+        case UPDATE_TEXT_POST:{
+            return {
+                ...state,
+                newPostText: action.newPostText
+            }
+        }
+
+        case ADD_POST: {
+        let newPost = {
                 id: newId(state.postData),
-                message: state.postText,
+                message: state.newPostText,
                 likesCount: 0
             }
-            state.postData.push(postObj);
-            state.postText = '';
-            return state;
-
+            return {
+                ...state,
+                postData: [...state.postData, newPost ],
+                newPostText: ''
+            }
+        }
         default:
             return state
     }
 }
 
 // Добавление постов
-export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, postText: newPostText });
+export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, newPostText: newPostText });
 export const addPostCreator = () => ({ type: ADD_POST });
 
 export default profileReducer

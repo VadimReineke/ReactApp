@@ -3,6 +3,7 @@ import classes from './SidebarFriends.module.css'
 import { NavLink } from "react-router-dom";
 
 const SidebarFriends = (props) => {
+
     return (
         <div className={classes.friendItem}>
         <NavLink to={`/friends/${props.id}`} className={classes.friendsItemLink}>

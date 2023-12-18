@@ -1,46 +1,71 @@
 import React from "react";
 import { addMessageCreator, selectDialogCreator, updateTextMessageCreator } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import { connect } from "react-redux";
 
 
+// const DialogsContainer = (props) => {
 
-//Создаем массив объектов пользователей и сообщений
-// Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
+//      let state = props.store.getState()
 
-const DialogsContainer = (props) => {
+//      // для формы
+//        let onMessageUpdate = (newTextMessage) => {
+//         props.store.dispatch(updateTextMessageCreator(newTextMessage))
+//        }
 
-     let state = props.store.getState()
+//        let onAddMessage = () => {
+//         props.store.dispatch(addMessageCreator())
+//        }
 
-     // для формы
-       let onMessageUpdate = (newTextMessage) => {
-        props.store.dispatch(updateTextMessageCreator(newTextMessage))
-       }
+//        let stateForm = state.dialogsPage.dialogFormActive
 
-       let onAddMessage = () => {
-        props.store.dispatch(addMessageCreator())
-       }
+//        // для рендеринга дилогов по пользователям
+//        let usersDialog = state.dialogsPage.dialogsData // показывает все пользователей с которыми у нас есть диалоги
+//        let userMessages = state.dialogsPage.dialogRenderData.messagesUserData // показывает все сообщения для выбранного пользователя
 
-       let stateForm = state.dialogsPage.dialogFormActive
+//        // Отображение диалога выбранного пользователя
+//        let showUserDialog = (userId) => {
+//         props.store.dispatch(selectDialogCreator(userId));
+//     }
 
-       // для рендеринга дилогов по пользователям
-       let usersDialog = state.dialogsPage.dialogsData // показывает все пользователей с которыми у нас есть диалоги
-       let userMessages = state.dialogsPage.dialogRenderData.messagesUserData // показывает все сообщения для выбранного пользователя
+//     return (
+//             <Dialogs 
+//             //updateNewMessageText = {onMessageUpdate} 
+//                      addMessage = {onAddMessage} 
+//                      //initialMessageText = {state.dialogsPage.dialogNewText}
+//                      //stateForm = {stateForm}
+//                     // usersDialog = {usersDialog} 
+//                     // userMessages = {userMessages} 
+//                      showUserDialog = {showUserDialog}/>
+//     )
+// }
 
-       // Отображение диалога выбранного пользователя
-       let showUserDialog = (userId) => {
-        props.store.dispatch(selectDialogCreator(userId));
+let mapStateToProps = (state) => {
+  return {
+    initialMessageText: state.dialogsPage.dialogNewText,
+    stateForm: state.dialogsPage.dialogFormActive,
+    usersDialog: state.dialogsPage.dialogsData, // показывает все пользователей с которыми у нас есть диалоги
+    userMessages: state.dialogsPage.dialogRenderData.messagesUserData // показывает все сообщения для выбранного пользователя
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    updateNewMessageText: (newTextMessage) => {
+      dispatch(updateTextMessageCreator(newTextMessage))
+    },
+
+    addMessage: () => {
+      dispatch(addMessageCreator())
+    },
+
+    showUserDialog: (userId) => {
+      dispatch(selectDialogCreator(userId))
     }
 
-    return (
-            <Dialogs updateNewMessageText = {onMessageUpdate} 
-                        addMessage = {onAddMessage} 
-                        initialMessageText = {state.dialogsPage.dialogNewText}
-                        stateForm = {stateForm}
-            usersDialog = {usersDialog} userMessages = {userMessages} 
-            showUserDialog = {showUserDialog}/>
-
-    )
-
+  }
 }
+
+const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs)
 
 export default DialogsContainer;

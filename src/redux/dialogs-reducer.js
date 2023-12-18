@@ -84,33 +84,56 @@ let initialState =  {
 }
 
 const dialogsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SELECT_DIALOG:
+
+
+
+switch (action.type) {
+        case SELECT_DIALOG: {
             state.dialogsData.forEach(element => {
                 if (element.id === action.userId) {
                     let indexEl = state.dialogsData.indexOf(element);
                     state.dialogRenderData = state.dialogsData[indexEl];
                 }
             })
-            state.dialogFormActive = true;
-            return state;
-        case UPDATE_DIALOG_MESSAGE:
-            state.dialogNewText = action.messageText;
-            return state;
-        case ADD_DIALOG_MESSAGE:
-            let userId = state.dialogRenderData.id
+           
+            return {
+                ...state,
+                dialogFormActive: true
+            }
+           
+        }
+
+        case UPDATE_DIALOG_MESSAGE: {
+            return {
+                ...state,
+            dialogNewText: action.messageText
+            }
+        }
+
+        case ADD_DIALOG_MESSAGE: {
+           
+            let userId = state.dialogRenderData.id  
+
+           let stateCopy = {
+                ...state,
+                dialogsData: [...state.dialogsData],
+            }
+
+           
             let messageObj = {
                 id: newId(state.dialogRenderData.messagesUserData),
                 message: state.dialogNewText,
             }
 
-            state.dialogsData.forEach(element => {
+            stateCopy.dialogsData.forEach(element => {
                 if (element.id === userId) {
                     element.messagesUserData.push(messageObj)
                 }
             })
-            state.dialogNewText = '';
-            return state;
+            stateCopy.dialogNewText = '';
+            return stateCopy;
+        }
+
 
         default:
             return state;

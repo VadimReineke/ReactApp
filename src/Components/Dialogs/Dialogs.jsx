@@ -1,10 +1,7 @@
-import React from "react";
 import classes from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import DialogMessage from "./Message/DialogMessage";
 import MessageForm from "./MessageForm/MessageForm";
-
-
 
 //Создаем массив объектов пользователей и сообщений
 // Используя map, преобразовываем эти массивы в новый в котором сразу будет массив и компонент с необходимыми пропсами
@@ -15,15 +12,13 @@ const Dialogs = (props) => {
     let messagesArr = props.userMessages.map((el) => <DialogMessage message = {el.message} key={el.id} />)
 
     let renderForm = () => {
-                   if ( props.stateForm === true) {
-                return <MessageForm   updateNewMessageText = {props.updateNewMessageText}
-                                      addMessage = {props.addMessage}
-                                      initialMessageText = {props.initialMessageText }
-                // dispatch = {props.dispatch}
-                //                      initialMessageText = {props.dialogsPage.dialogNewText}
-                                     />
-           }
-       }
+        if (props.stateForm === true) {
+            return <MessageForm updateNewMessageText={props.updateNewMessageText}
+                addMessage={props.addMessage}
+                initialMessageText={props.initialMessageText}
+            />
+        }
+    }
 
     return (
    <div className={classes.dialogs}>

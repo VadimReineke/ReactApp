@@ -12,6 +12,7 @@ const linkClasses = ({isActive}) => (isActive ? `${classes.activeLink} ${classes
 
 
 const Nav = (props) => {
+ 
  let randomSidebarFriendsArr = props.sidebarFriendsData.map((el) => <SidebarFriends userName={el.name} id={el.id} userAvatar ={el.avatar} key={el.id} />)  
     return (
               <nav className={classes.nav}>
