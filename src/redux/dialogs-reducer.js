@@ -85,8 +85,6 @@ let initialState =  {
 
 const dialogsReducer = (state = initialState, action) => {
 
-
-
 switch (action.type) {
         case SELECT_DIALOG: {
             state.dialogsData.forEach(element => {
@@ -98,7 +96,7 @@ switch (action.type) {
            
             return {
                 ...state,
-                dialogFormActive: true
+                dialogFormActive: true,
             }
            
         }
@@ -110,28 +108,26 @@ switch (action.type) {
             }
         }
 
-        case ADD_DIALOG_MESSAGE: {
-           
-            let userId = state.dialogRenderData.id  
-
-           let stateCopy = {
+        case ADD_DIALOG_MESSAGE: {           
+            let userId = state.dialogRenderData.id      
+           return  {
                 ...state,
-                dialogsData: [...state.dialogsData],
-            }
+                  dialogsData: state.dialogsData.map(element => {
+                    if (element.id === userId) {                                            
+                       return {...element,
+                               messagesUserData: [...element.messagesUserData, {id: newId(element.messagesUserData), message: state.dialogNewText}]
+                            }
+                  }
+                  return element
+                }),
 
-           
-            let messageObj = {
-                id: newId(state.dialogRenderData.messagesUserData),
-                message: state.dialogNewText,
-            }
+                dialogRenderData: { 
+                    ...state.dialogRenderData,
+                    messagesUserData: [...state.dialogRenderData.messagesUserData, {id:newId(state.dialogRenderData.messagesUserData), message: state.dialogNewText}]
+                },
 
-            stateCopy.dialogsData.forEach(element => {
-                if (element.id === userId) {
-                    element.messagesUserData.push(messageObj)
-                }
-            })
-            stateCopy.dialogNewText = '';
-            return stateCopy;
+                dialogNewText: ''
+            }  
         }
 
 
@@ -143,6 +139,6 @@ switch (action.type) {
 // Работа с диалогами - выбор диалога, обновление ввода сообщения, добавление сообщения
 export const selectDialogCreator = (userId) => ({ type: SELECT_DIALOG, userId: userId })
 export const updateTextMessageCreator = (newTextMessage) => ({ type: UPDATE_DIALOG_MESSAGE, messageText: newTextMessage })
-export const addMessageCreator = () => ({ type: ADD_DIALOG_MESSAGE })
+export const addMessageCreator = () => ({ type: ADD_DIALOG_MESSAGE})
 
 export default dialogsReducer

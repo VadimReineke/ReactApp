@@ -56,5 +56,4 @@
 .addButton:focus {
     outline: 2px solid blue;
     transform: scale(1.1);
-
 }

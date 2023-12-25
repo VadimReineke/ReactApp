@@ -23,6 +23,7 @@ const Nav = (props) => {
                     <li className={classes.item}><NavLink to="/news" className = {linkClasses}>News</NavLink></li>
                     <li className={classes.item}><NavLink to="/music" className = {linkClasses}>Music</NavLink></li>
                     <li className={classes.item}><NavLink to="/settings" className = {linkClasses}>Settings</NavLink></li>
+                    <li className={classes.item}><NavLink to="/users" className = {linkClasses}>Users</NavLink></li>
                     <li className={classes.item}><NavLink to="/friends" className = {linkClasses}>Friends</NavLink></li>
                     <li className={`${classes.item} ${classes.friendsList}` }>{randomSidebarFriendsArr}</li>
                   </ul>                

@@ -1,0 +1,72 @@
+
+.container {
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.userContainer {
+    display: flex;
+    gap: 30px;
+    padding: 15px;
+    background-color: white;
+    border-bottom: 1px solid red;
+
+}
+
+.userWrapper {
+     gap: 30px;
+     width: 100%;
+     padding: 15px;
+    
+}
+
+.userAvatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.userList {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.userItem {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.userText {
+    font-family: Muller;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.followedButton {
+    min-width: 130px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.followedButton:hover {
+    background-color: gold;
+    transform: scale(1.1);
+}
+
+.followedButton:active {
+    outline: 1px solid blue;
+}
+
+.followedButton:focus {
+    outline: 2px solid blue;
+    transform: scale(1.1);
+
+}

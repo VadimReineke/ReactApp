@@ -10,6 +10,7 @@ import Settings from "./Components/Settings/Settings";
 import { Route, Routes } from "react-router-dom";
 import FriendsContainer from "./Components/Friends/FriendsContainer.jsx";
 import NavContainer from "./Components/Nav/NavContainer.jsx";
+import UsersContainer from "./Components/Users/UsersContainer.jsx";
 
 
 
@@ -26,6 +27,7 @@ const App = (props) => {
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/users" element={<UsersContainer />} />
             <Route path="/friends/*" element={<FriendsContainer/>} />
           </Routes>
         </main>

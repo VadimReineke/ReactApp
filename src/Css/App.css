@@ -126,4 +126,5 @@ ol[class] {
 .main {
 	grid-area: main;
 	background-color: lightslategray;
+	border-radius: 20px;
 }
