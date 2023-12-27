@@ -11,8 +11,12 @@
     gap: 30px;
     padding: 15px;
     background-color: white;
-    border-bottom: 1px solid red;
+    border: 1px solid red;
+    border-radius: 20px;
+}
 
+.userContainer:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .userWrapper {
@@ -69,4 +73,21 @@
     outline: 2px solid blue;
     transform: scale(1.1);
 
+}
+
+.paginationList {
+    display: flex;
+    gap: 5px;
+}
+
+.paginationButton {
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-family: Muller;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
 }
