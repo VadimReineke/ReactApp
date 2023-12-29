@@ -4,15 +4,17 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT ='SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 
 
 let initialState = {
     // Массив в котором хранятся данные для постов
     users: [],
-    currentPage: 1,
     pageSize: 5,
     totalUserCount: 0,
+    currentPage: 1,
+    isFetching: false
 }
 
 
@@ -23,7 +25,6 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => {                  
                     if (user.id === action.userId) {
-
                         return {...user, followed: true}
                     }
                     return user;
@@ -65,6 +66,14 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
+        case TOGGLE_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+
+        }
+
         default:
             return state
     }
@@ -77,5 +86,6 @@ export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId: userId });
 export const setUsersAC = (users) => ({type: SET_USERS, users});
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setTotalUsersCountAC = (totalUserCount) => ({type: SET_TOTAL_USERS_COUNT, totalUserCount: totalUserCount})
+export const toggleIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching})
 
 export default usersReducer

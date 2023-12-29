@@ -124,6 +124,7 @@ ol[class] {
 }
 
 .main {
+	position: relative;
 	grid-area: main;
 	background-color: lightslategray;
 	border-radius: 20px;
