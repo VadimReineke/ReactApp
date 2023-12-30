@@ -2,6 +2,7 @@
 //Постоянные для работы с постами
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const ADD_POST = 'ADD-POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
 
@@ -14,7 +15,29 @@ let initialState = {
             { id: 10, message: 'Это пятый пост', likesCount: '7' },
         ],
 
-        newPostText: ''
+        newPostText: '',
+        profile: null
+        // profile: {
+        //     "aboutMe": "я крутой чувак 1001%",
+        //     "contacts": {
+        //       "facebook": "facebook.com",
+        //       "website": null,
+        //       "vk": "vk.com/dimych",
+        //       "twitter": "https://twitter.com/@sdf",
+        //       "instagram": "instagra.com/sds",
+        //       "youtube": null,
+        //       "github": "github.com",
+        //       "mainLink": null
+        //     },
+        //     "lookingForAJob": true,
+        //     "lookingForAJobDescription": "не ищу, а дурачусь",
+        //     "fullName": "samurai dimych",
+        //     "userId": 2,
+        //     "photos": {
+        //       "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+        //       "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+        //     }
+        //   }
 }
 
 // функция нахождения и присвоения нового id 
@@ -34,6 +57,13 @@ const newId = (arr) => {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
+
         case UPDATE_TEXT_POST:{
             return {
                 ...state,
@@ -58,6 +88,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile })
 // Добавление постов
 export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, newPostText: newPostText });
 export const addPostCreator = () => ({ type: ADD_POST });

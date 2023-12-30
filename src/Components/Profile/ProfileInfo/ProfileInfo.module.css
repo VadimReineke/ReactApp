@@ -1,0 +1,42 @@
+.profileInfoContainer {
+  background-color: white;
+  
+}
+
+.profileInfoUserWrapper{
+  display: flex;
+  gap: 50px;
+}
+
+.profileInfoUserAvatar {
+  width: 25%;
+  border-radius: 50%;
+}
+  
+.profileInfoWallPaper {
+  flex-shrink: 0;
+  width: 100%;
+  height: 300px;
+}
+
+.profileInfoContactList {
+  list-style: none;
+}
+
+.profileInfoText {
+  margin-bottom: 20px;
+  font-family: Muller;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.profileInfoTextDescr {
+  font-family: Muller;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+
+}

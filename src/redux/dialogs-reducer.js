@@ -89,14 +89,14 @@ switch (action.type) {
         case SELECT_DIALOG: {
             state.dialogsData.forEach(element => {
                 if (element.id === action.userId) {
-                    let indexEl = state.dialogsData.indexOf(element);
-                    state.dialogRenderData = state.dialogsData[indexEl];
+                    state.dialogRenderData = element
                 }
             })
            
             return {
                 ...state,
                 dialogFormActive: true,
+                
             }
            
         }
@@ -108,12 +108,12 @@ switch (action.type) {
             }
         }
 
-        case ADD_DIALOG_MESSAGE: {           
-            let userId = state.dialogRenderData.id      
+        case ADD_DIALOG_MESSAGE: {                
            return  {
                 ...state,
                   dialogsData: state.dialogsData.map(element => {
-                    if (element.id === userId) {                                            
+                    if (element.id === state.dialogRenderData.id ) {  
+                                         
                        return {...element,
                                messagesUserData: [...element.messagesUserData, {id: newId(element.messagesUserData), message: state.dialogNewText}]
                             }
@@ -137,7 +137,7 @@ switch (action.type) {
 }
 
 // Работа с диалогами - выбор диалога, обновление ввода сообщения, добавление сообщения
-export const selectDialogCreator = (userId) => ({ type: SELECT_DIALOG, userId: userId })
+export const selectDialogCreator = (userId) => ({ type: SELECT_DIALOG, userId: userId})
 export const updateTextMessageCreator = (newTextMessage) => ({ type: UPDATE_DIALOG_MESSAGE, messageText: newTextMessage })
 export const addMessageCreator = () => ({ type: ADD_DIALOG_MESSAGE})
 
