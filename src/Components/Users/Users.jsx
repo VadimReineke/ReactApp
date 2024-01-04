@@ -6,7 +6,9 @@ import { followAPI, unFollowAPI } from '../../api/api';
 
 
 const Users = (props) => {
+
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
+
     let pagesArr = []
     for (let i = 1; i <= pagesCount; i++) {
         pagesArr.push(i)
@@ -42,22 +44,28 @@ const Users = (props) => {
 
                     <div>
                         {u.followed
-                            ? <button className={classes.followedButton} onClick={() => {
+                            ? <button className={classes.followedButton} disabled={props.followingProgress.some((id) => id===u.id)}
+                             onClick={() => {
+                                props.toggleFollowing(true, u.id);
                                 followAPI.getFollowUser(u.id).then(data=> {
                                     if (data.resultCode === 0) {
-                                        console.log(data)
                                          props.unfollow(u.id)
+                                        
                                         }    
+                                        props.toggleFollowing(false, u.id);
                                     }
                                   )}
                                 }>unFollow</button>
                                 
-                            : <button className={classes.followedButton} onClick={() => { 
+                            : <button className={classes.followedButton} disabled={props.followingProgress.some((id) => id===u.id)}
+                            onClick={() => { 
+                                props.toggleFollowing(true, u.id);
                                 unFollowAPI.getUnfollowUser(u.id).then(data => {
                                     if (data.resultCode === 0) {
-                                        console.log(data)
                                          props.follow(u.id) 
-                                        }    
+                                         
+                                        }   
+                                        props.toggleFollowing(false, u.id); 
                                     }
                                   )}
                                 }>follow</button>}
