@@ -1,4 +1,6 @@
 
+import { profileAPI } from "../api/api";
+
 //Постоянные для работы с постами
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const ADD_POST = 'ADD-POST';
@@ -17,27 +19,6 @@ let initialState = {
 
         newPostText: '',
         profile: null
-        // profile: {
-        //     "aboutMe": "я крутой чувак 1001%",
-        //     "contacts": {
-        //       "facebook": "facebook.com",
-        //       "website": null,
-        //       "vk": "vk.com/dimych",
-        //       "twitter": "https://twitter.com/@sdf",
-        //       "instagram": "instagra.com/sds",
-        //       "youtube": null,
-        //       "github": "github.com",
-        //       "mainLink": null
-        //     },
-        //     "lookingForAJob": true,
-        //     "lookingForAJobDescription": "не ищу, а дурачусь",
-        //     "fullName": "samurai dimych",
-        //     "userId": 2,
-        //     "photos": {
-        //       "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-        //       "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
-        //     }
-        //   }
 }
 
 // функция нахождения и присвоения нового id 
@@ -92,5 +73,11 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: pr
 // Добавление постов
 export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, newPostText: newPostText });
 export const addPostCreator = () => ({ type: ADD_POST });
+
+export const getUserProfile = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId).then(data => { 
+        dispatch(setUserProfile(data))
+   })
+} 
 
 export default profileReducer

@@ -20,7 +20,7 @@ const Dialogs = (props) => {
         }
     }
 
-    return (
+   return (
    <div className={classes.dialogs}>
     <h2 className={classes.maintitle}>Dialogs</h2>
        <div className={classes.dialogsWrapper}>
