@@ -6,24 +6,31 @@ class ProfileStatus extends React.Component {
 
     state = {
         editMode: false,
-        title: "Hello!"
+        status: this.props.status
     }
 
     editModeStatus = () => {
-        this.setState({editMode: !this.state.editMode}) 
+         this.setState({editMode: !this.state.editMode});
+         this.props.updateStatus(this.state.status);
+    }
+
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.currentTarget.value
+        });
     }
 
     render() {
-        return (
+         return (
             <div>
                 {!this.state.editMode &&
                 <div>
-                    <span onDoubleClick={this.editModeStatus} className={classes.statusText}>{this.state.title}</span>
+                    <span onClick={this.editModeStatus} className={classes.statusText}>{this.props.status || "Введите статус"}</span>
                 </div>
                  }
                  {this.state.editMode &&
                 <div>
-                    <input autoFocus={true} onBlur={this.editModeStatus} className={classes.statusTextInput} defaultValue={this.state.title}/>
+                    <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.editModeStatus} className={classes.statusTextInput} value={this.state.status}/>
                 </div>
                 }
             </div>

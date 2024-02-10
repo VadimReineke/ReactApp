@@ -5,6 +5,7 @@ import { profileAPI } from "../api/api";
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
 
@@ -18,7 +19,8 @@ let initialState = {
         ],
 
         newPostText: '',
-        profile: null
+        profile: null,
+        status: '',
 }
 
 // функция нахождения и присвоения нового id 
@@ -64,20 +66,45 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: ''
             }
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+
+        }
         default:
             return state
     }
 }
 
+
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile })
+export const setStatus = (status) => ({type: SET_STATUS, status:status})
 // Добавление постов
 export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, newPostText: newPostText });
 export const addPostCreator = () => ({ type: ADD_POST });
-
+//Загрузка профиля с сервера по Id
 export const getUserProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(data => { 
         dispatch(setUserProfile(data))
    })
 } 
+// Загрузка статуса с сервера
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(data => {
+        dispatch(setStatus(data))
+    })
+}
+
+// обновление статуса на сервере
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        } 
+    })
+}
 
 export default profileReducer
