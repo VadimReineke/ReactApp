@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUserProfile } from '../../redux/profile-reducer';
 import { useParams} from 'react-router-dom';
 import { withAuthNavigate } from "../../HOC/AuthNavigate";
+import { compose } from "redux";
 
 export function withRouter(Children){
     return(props)=>{
@@ -25,14 +26,14 @@ class ProfileContainer extends React.Component {
     }
 }
 
-let AuthProfileContainer = withAuthNavigate(ProfileContainer)
-
 let stateToProps = (state) => {
-        return {
-            profile: state.profilePage.profile,
-        }
+    return {
+        profile: state.profilePage.profile,
+    }
 }
 
- let WithUrlDataContainerComponent = withRouter(AuthProfileContainer);
-
-export default connect(stateToProps, {getUserProfile})(WithUrlDataContainerComponent )
+export default compose(
+    connect(stateToProps, {getUserProfile}),
+    withRouter,
+    // withAuthNavigate
+)(ProfileContainer)

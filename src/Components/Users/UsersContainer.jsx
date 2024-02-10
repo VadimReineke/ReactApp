@@ -4,6 +4,7 @@ import { follow, unfollow, toggleFollowing, getUsers } from '../../redux/users-r
 import Users from './Users'
 import Preloader from '../Common/Preloader/Preloader';
 import { withAuthNavigate } from '../../HOC/AuthNavigate';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
 
@@ -44,7 +45,12 @@ let mapStateToProps = (state) => {
    }
 }
 
-let AuthUsersContainer = withAuthNavigate(UsersContainer)
+export default compose(
+   withAuthNavigate,
+   connect(mapStateToProps, { follow, unfollow, toggleFollowing, getUsers })
+)(UsersContainer)
 
-export default connect(mapStateToProps, { follow, unfollow, toggleFollowing, getUsers })(AuthUsersContainer)
+// let AuthUsersContainer = withAuthNavigate(UsersContainer)
+
+// export default withAuthNavigate(connect(mapStateToProps, { follow, unfollow, toggleFollowing, getUsers })(UsersContainer))
 
