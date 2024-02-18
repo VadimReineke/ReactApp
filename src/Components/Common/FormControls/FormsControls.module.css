@@ -1,0 +1,31 @@
+
+.textarea {
+    width: 350px;
+    height: 100px;
+}
+
+.input {
+    width: 350px;
+    height: 30px;
+}
+
+.formControl {
+
+}
+
+.error {
+    border: 4px solid red;
+}
+
+.errorWrapper {
+    padding: 5px;
+    width: max-content;
+    /* background-color: white; */
+}
+
+.formControl span {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
