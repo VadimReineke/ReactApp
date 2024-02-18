@@ -1,38 +1,39 @@
 import React from "react";
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import { Field, reduxForm } from "redux-form";
+
+const AddNewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={classes.form}>
+        <Field component='textarea' name='newPostText' placeholder='Введите текст' className={classes.textarea}/>
+        <button className={`${classes.addButton} ${classes.btnReset}`}>Добавить</button>
+    </form>
+    )
+
+}
+
+const ReduxPostForm = reduxForm ({
+    form: 'ProfileAddNewPostForm'
+})(AddNewPostForm)
 
 const MyPosts = (props) => {
-   
-    let postsArr = props.postData.map(el => <Post message={el.message} likeCount={el.likesCount} key={el.id}/> ) //получаем массив постов из index.js через пропсы и отрисовываем
-    
-    let newPost = React.createRef();
-    
-    let addPostFn = () => {
-        props.addPost()
+   let postsArr = props.postData.map(el => <Post message={el.message} likeCount={el.likesCount} key={el.id}/> ) //получаем массив постов из index.js через пропсы и отрисовываем
+       
+    let addPostFn = (values) => {
+        props.addPost(values.newPostText)
     }
-    let onPostUpdate = () => {
-        let newPostText = newPost.current.value;
-        props.updateNewPostText(newPostText);
-    }
+    
     return (
         <div className={classes.container}>
             <h2 className={classes.title}>My posts</h2>
-
-            <form className={classes.form}>
-            <textarea className={classes.textarea} 
-                      ref={newPost} 
-                      onChange={onPostUpdate} 
-                      value={props.newText}/>
-            <button className={`${classes.addButton} ${classes.btnReset}`} type="button" onClick={addPostFn}>Добавить</button>
-        </form>
-
+            <ReduxPostForm onSubmit={addPostFn} />
             <ul className={classes.list}>
                 {postsArr}
             </ul>
-
         </div>
     )
 }
+
 
 export default MyPosts;

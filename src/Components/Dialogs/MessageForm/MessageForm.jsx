@@ -1,25 +1,16 @@
 import React from "react";
 import classes from './MessageForm.module.css';
+import { Field, reduxForm } from "redux-form";
 
 const MessageForm = (props) => {
-
-    let addMessage = () => {props.addMessage()}
-    let updateTextMessage = (e) => {
-        let newTextMessage = e.target.value;
-        props.updateNewMessageText(newTextMessage)
-    }
-
     return (
-        <form className={classes.messageForm}> 
-        <textarea placeholder="Напишите сообщение..." 
-                className={classes.textareaForm} 
-                onChange={updateTextMessage}
-                value={props.initialMessageText}
-                />
-        <button className={`${classes.addButton} ${classes.btnReset}`} type="button"
-         onClick={addMessage}>Добавить</button>
+        <form onSubmit={props.handleSubmit} className={classes.messageForm}> 
+        <Field component="textarea" name="messageText" placeholder="Напишите сообщение..." className={classes.textareaForm} />
+        <button className={`${classes.addButton} ${classes.btnReset}`}>Добавить</button>
        </form>
     )
 }
 
-export default MessageForm;
+const ReduxMessageForm = reduxForm({form: "messageForm"})(MessageForm)
+
+export default ReduxMessageForm;

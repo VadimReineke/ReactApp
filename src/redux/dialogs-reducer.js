@@ -1,7 +1,6 @@
 
 //Постоянные для работы с диалогами
 const SELECT_DIALOG = 'SELECT-DIALOG';
-const UPDATE_DIALOG_MESSAGE = 'UPDATE-DIALOG-MESSAGE';
 const ADD_DIALOG_MESSAGE = 'ADD-DIALOG-MESSAGE';
 
 // функция нахождения и присвоения нового id 
@@ -78,8 +77,6 @@ let initialState =  {
             { id: 1, message: 'Выберете пользователя что бы начать переписку' },
         ]
     },
-
-    dialogNewText: '',
     dialogFormActive: false
 }
 
@@ -101,12 +98,12 @@ switch (action.type) {
            
         }
 
-        case UPDATE_DIALOG_MESSAGE: {
-            return {
-                ...state,
-            dialogNewText: action.messageText
-            }
-        }
+        // case UPDATE_DIALOG_MESSAGE: {
+        //     return {
+        //         ...state,
+        //     dialogNewText: action.messageText
+        //     }
+        // }
 
         case ADD_DIALOG_MESSAGE: {                
            return  {
@@ -115,7 +112,7 @@ switch (action.type) {
                     if (element.id === state.dialogRenderData.id ) {  
                                          
                        return {...element,
-                               messagesUserData: [...element.messagesUserData, {id: newId(element.messagesUserData), message: state.dialogNewText}]
+                               messagesUserData: [...element.messagesUserData, {id: newId(element.messagesUserData), message: action.messageText}]
                             }
                   }
                   return element
@@ -123,7 +120,7 @@ switch (action.type) {
 
                 dialogRenderData: { 
                     ...state.dialogRenderData,
-                    messagesUserData: [...state.dialogRenderData.messagesUserData, {id:newId(state.dialogRenderData.messagesUserData), message: state.dialogNewText}]
+                    messagesUserData: [...state.dialogRenderData.messagesUserData, {id:newId(state.dialogRenderData.messagesUserData), message: action.messageText}]
                 },
 
                 dialogNewText: ''
@@ -138,7 +135,7 @@ switch (action.type) {
 
 // Работа с диалогами - выбор диалога, обновление ввода сообщения, добавление сообщения
 export const selectDialogCreator = (userId) => ({ type: SELECT_DIALOG, userId: userId})
-export const updateTextMessageCreator = (newTextMessage) => ({ type: UPDATE_DIALOG_MESSAGE, messageText: newTextMessage })
-export const addMessageCreator = () => ({ type: ADD_DIALOG_MESSAGE})
+// export const updateTextMessageCreator = (newTextMessage) => ({ type: UPDATE_DIALOG_MESSAGE, messageText: newTextMessage })
+export const addMessageCreator = (messageText) => ({ type: ADD_DIALOG_MESSAGE, messageText})
 
 export default dialogsReducer

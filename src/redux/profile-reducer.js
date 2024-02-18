@@ -2,7 +2,6 @@
 import { profileAPI } from "../api/api";
 
 //Постоянные для работы с постами
-const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
@@ -18,7 +17,6 @@ let initialState = {
             { id: 10, message: 'Это пятый пост', likesCount: '7' },
         ],
 
-        newPostText: '',
         profile: null,
         status: '',
 }
@@ -47,17 +45,10 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
-        case UPDATE_TEXT_POST:{
-            return {
-                ...state,
-                newPostText: action.newPostText
-            }
-        }
-
         case ADD_POST: {
         let newPost = {
                 id: newId(state.postData),
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             }
             return {
@@ -71,7 +62,6 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
-
         }
         default:
             return state
@@ -82,8 +72,7 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile })
 export const setStatus = (status) => ({type: SET_STATUS, status:status})
 // Добавление постов
-export const onPostUpdateCreator = (newPostText) => ({ type: UPDATE_TEXT_POST, newPostText: newPostText });
-export const addPostCreator = () => ({ type: ADD_POST });
+export const addPostCreator = (newPostText) => ({ type: ADD_POST, newPostText });
 //Загрузка профиля с сервера по Id
 export const getUserProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(data => { 

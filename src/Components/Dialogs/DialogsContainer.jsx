@@ -1,6 +1,6 @@
 import { compose } from "redux";
 import { withAuthNavigate } from "../../HOC/AuthNavigate";
-import { addMessageCreator, selectDialogCreator, updateTextMessageCreator } from "../../redux/dialogs-reducer";
+import { addMessageCreator, selectDialogCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 
@@ -15,12 +15,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessageText: (newTextMessage) => {
-      dispatch(updateTextMessageCreator(newTextMessage))
-    },
-
-    addMessage: () => {
-      dispatch(addMessageCreator())
+    addMessage: (messageText) => {
+      dispatch(addMessageCreator(messageText))
     },
 
     showUserDialog: (userId) => {
