@@ -1,7 +1,6 @@
 
 .textarea {
-    width: 350px;
-    height: 100px;
+
 }
 
 .input {
@@ -15,6 +14,7 @@
 
 .error {
     border: 4px solid red;
+    border-radius: 10px;
 }
 
 .errorWrapper {
@@ -28,4 +28,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
+}
+
+.formSummaryError {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid red;
 }

@@ -30,6 +30,20 @@
     color: gold;
   }
 
+  .loginWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .loginDescr {
+    display: flex;
+    align-items: center;
+  }
+
+  .loginName {
+   margin-right: 10px;
+  }
+
   .loginLink {
     padding-right: 30px;
     font-family: Roboto;
@@ -38,3 +52,31 @@
     font-weight: 700;
     line-height: 100%;
   }
+
+
+  .logoutBtn {
+    background-color: transparent;    
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out; cursor: pointer;
+  }
+  .logoutImg {
+    padding-top: 10px;
+  }
+
+
+.logoutBtn:hover {
+    background-color: gold;
+    transform: scale(1.1);
+}
+
+.logoutBtn:active {
+    outline: 1px solid blue;
+}
+
+.logoutBtn:focus {
+    outline: 2px solid blue;
+    transform: scale(1.1);
+}

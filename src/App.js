@@ -25,7 +25,7 @@ const App = (props) => {
         <main className='main'>
           <Routes>
             <Route path="/" element= {<LoginContainer/>} />
-             <Route path="/login/*" element={<LoginPage/>} />
+            <Route path="/login/*" element={<LoginPage/>} />
             <Route path="/profile/:userID?" element={<ProfileContainer/>}/>
             <Route path="/dialogs/*" element={<DialogsContainer/>} />
             <Route path="/news" element={<News />} />
